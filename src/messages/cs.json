@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "home": "Domů",
+    "about": "O nás",
+    "products": "Produkty",
+    "custom": "Na míru",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Nábytek, který vás přežije",
+    "subtitle": "Ručně vyrobený z masivního dřeva a oceli. Postavený na generace.",
+    "cta": "Prohlédnout naši práci",
+    "ctaSecondary": "Navrhněte si vlastní"
+  },
+  "values": {
+    "title": "Proč IntermosCraft",
+    "durability": "Dlouhá životnost",
+    "durabilityDesc": "Stavíme z materiálů a technikami, které obstojí ve zkoušce časem.",
+    "handcraft": "Ruční práce",
+    "handcraftDesc": "Každý kus je vyroben ručně s důrazem na nejmenší detail.",
+    "personalization": "Personalizace",
+    "personalizationDesc": "Přizpůsobte rozměry, materiály a povrchovou úpravu přesně podle svých potřeb.",
+    "design": "Jedinečný design",
+    "designDesc": "Minimalistická estetika, kde se masivní dřevo setkává s precizní ocelí."
+  },
+  "featured": {
+    "title": "Vybrané kousky",
+    "viewAll": "Zobrazit všechny produkty"
+  },
+  "about": {
+    "pageTitle": "Náš příběh",
+    "heroText": "Kde se masivní dřevo setkává s precizní ocelí",
+    "story": "IntermosCraft se zrodil z vášně pro tvorbu nábytku, který spojuje teplo přírodního dřeva se silou oceli. Každý kus, který vytváříme, je svědectvím tradičního řemesla obohaceného moderními designovými principy.",
+    "storyMore": "Věříme, že nábytek by měl být víc než funkční — měl by být výrazným kusem, který s věkem získává na kráse. V naší dílně v České republice se surové materiály proměňují v dědictví.",
+    "processTitle": "Náš proces",
+    "step1Title": "Návrh",
+    "step1Desc": "Každý kus začíná rozhovorem. Pochopíme váš prostor, váš styl a vaši vizi.",
+    "step2Title": "Výběr materiálů",
+    "step2Desc": "Ručně vybíráme každou desku z masivního dřeva a řežeme každý ocelový prvek k dokonalosti.",
+    "step3Title": "Výroba",
+    "step3Desc": "Tradiční truhlářství se v naší dílně setkává s moderním kovoobrábením.",
+    "step4Title": "Dodání",
+    "step4Desc": "Hotový kus je pečlivě zkontrolován a doručen k vám domů.",
+    "qualitiesTitle": "Co nás odlišuje",
+    "quality1": "Masivní dřevo",
+    "quality1Desc": "Pouze prémiové tvrdé dřevo — dub, ořech, jasan. Žádné dýhy, žádné dřevotřísky.",
+    "quality2": "Precizní ocel",
+    "quality2Desc": "Ručně svařované ocelové rámy s odolným práškovým lakováním.",
+    "quality3": "Posedlost detailem",
+    "quality3Desc": "Každý spoj, každá hrana, každý povrch je dokončen k dokonalosti.",
+    "quality4": "Vyrobeno v Česku",
+    "quality4Desc": "Navrženo a ručně vyrobeno v naší dílně s hrdostí."
+  },
+  "products": {
+    "pageTitle": "Naše produkty",
+    "heroText": "Každý kus vypráví příběh dřeva a oceli",
+    "filterAll": "Vše",
+    "filterTables": "Stoly",
+    "filterStorage": "Úložné prostory",
+    "filterSeating": "Sezení",
+    "requestQuote": "Poptávka",
+    "details": "Detail",
+    "customNote": "Každý produkt lze přizpůsobit. Kontaktujte nás pro zakázkové rozměry a povrchové úpravy."
+  },
+  "custom": {
+    "pageTitle": "Navrhněte si vlastní",
+    "heroText": "Vaše vize, naše řemeslo",
+    "intro": "Máte na mysli konkrétní kus? Řekněte nám o svém vysněném nábytku a my ho přivedeme k životu.",
+    "formTitle": "Poptejte zakázkový kus",
+    "nameLabel": "Vaše jméno",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefon (nepovinné)",
+    "typeLabel": "Typ nábytku",
+    "typePlaceholder": "např. Konferenční stolek, Knihovna, Pracovní stůl...",
+    "dimensionsLabel": "Preferované rozměry (nepovinné)",
+    "dimensionsPlaceholder": "např. 120cm x 60cm x 45cm",
+    "materialLabel": "Preferované materiály",
+    "materialWood": "Dub",
+    "materialWalnut": "Ořech",
+    "materialAsh": "Jasan",
+    "materialOther": "Jiné / Nevím",
+    "descriptionLabel": "Popište svou vizi",
+    "descriptionPlaceholder": "Řekněte nám o stylu, funkci a jakékoli inspiraci...",
+    "budgetLabel": "Rozpočtový rozsah (nepovinné)",
+    "submitBtn": "Odeslat poptávku",
+    "successMessage": "Děkujeme! Ozveme se vám do 48 hodin.",
+    "configuratorTitle": "Interaktivní konfigurátor",
+    "configuratorSoon": "Náš interaktivní konfigurátor nábytku bude brzy k dispozici. Mezitím použijte formulář výše k popisu vašeho ideálního kusu."
+  },
+  "contact": {
+    "pageTitle": "Ozvěte se nám",
+    "heroText": "Pojďme společně vytvořit něco výjimečného",
+    "formTitle": "Napište nám",
+    "nameLabel": "Vaše jméno",
+    "emailLabel": "E-mail",
+    "subjectLabel": "Předmět",
+    "messageLabel": "Zpráva",
+    "submitBtn": "Odeslat zprávu",
+    "successMessage": "Zpráva odeslána! Odpovíme do 24 hodin.",
+    "infoTitle": "Navštivte naši dílnu",
+    "address": "Česká republika",
+    "emailInfo": "info@intermoscraft.com",
+    "phoneInfo": "+420 XXX XXX XXX",
+    "hours": "Po – Pá: 9:00 – 17:00",
+    "socialTitle": "Sledujte nás"
+  },
+  "footer": {
+    "tagline": "Ručně vyrobený nábytek z masivního dřeva a oceli.",
+    "navigation": "Navigace",
+    "followUs": "Sledujte nás",
+    "rights": "Všechna práva vyhrazena.",
+    "privacy": "Ochrana soukromí",
+    "terms": "Obchodní podmínky"
+  },
+  "productItems": {
+    "nightstand": {
+      "name": "Noční stolek NOCI",
+      "description": "Minimalistický noční stolek kombinující černou ocel s masivní dubovou poličkou. Kus, který vás přežije."
+    },
+    "coffeeTable": {
+      "name": "Konferenční stolek STOL",
+      "description": "Nízký konferenční stolek s masivní dubovou deskou a čistými ocelovými nohami."
+    },
+    "shelf": {
+      "name": "Nástěnná police POLICE",
+      "description": "Plovoucí nástěnná police s ocelovými držáky a olejovaným dubovým dřevem."
+    },
+    "desk": {
+      "name": "Pracovní stůl PRACOVIŠTĚ",
+      "description": "Prostorný pracovní stůl s integrovaným vedením kabelů a masivní dřevěnou deskou."
+    },
+    "bench": {
+      "name": "Lavice LAVICE",
+      "description": "Předsíňová lavice s ocelovým rámem a teplým dubovým sedákem."
+    },
+    "tvStand": {
+      "name": "TV stolek MÉDIA",
+      "description": "Nízká mediální konzole s otevřenými policemi a skrytým vedením kabelů."
+    }
+  }
+}

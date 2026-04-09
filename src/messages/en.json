@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "custom": "Custom Order",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Furniture That Outlasts You",
+    "subtitle": "Handcrafted from solid wood and steel. Built to last generations.",
+    "cta": "Explore Our Work",
+    "ctaSecondary": "Design Your Own"
+  },
+  "values": {
+    "title": "Why IntermosCraft",
+    "durability": "Long-lasting",
+    "durabilityDesc": "Built with materials and techniques that stand the test of time.",
+    "handcraft": "Handcrafted",
+    "handcraftDesc": "Every piece is made by hand with attention to the smallest detail.",
+    "personalization": "Personalized",
+    "personalizationDesc": "Customize dimensions, materials, and finishes to your exact needs.",
+    "design": "Unique Design",
+    "designDesc": "Minimalist aesthetics where solid wood meets precision steel."
+  },
+  "featured": {
+    "title": "Featured Pieces",
+    "viewAll": "View All Products"
+  },
+  "about": {
+    "pageTitle": "Our Story",
+    "heroText": "Where solid wood meets precision steel",
+    "story": "IntermosCraft was born from a passion for creating furniture that bridges the warmth of natural wood with the strength of steel. Every piece we create is a testament to traditional craftsmanship enhanced by modern design principles.",
+    "storyMore": "We believe furniture should be more than functional — it should be a statement piece that grows more beautiful with age. Our workshop in the Czech Republic is where raw materials are transformed into heirlooms.",
+    "processTitle": "Our Process",
+    "step1Title": "Design",
+    "step1Desc": "Every piece begins with a conversation. We understand your space, your style, and your vision.",
+    "step2Title": "Select Materials",
+    "step2Desc": "We hand-pick every plank of solid wood and cut every steel element to perfection.",
+    "step3Title": "Craft",
+    "step3Desc": "Traditional woodworking meets modern metalwork in our workshop.",
+    "step4Title": "Deliver",
+    "step4Desc": "Your finished piece is carefully inspected and delivered to your home.",
+    "qualitiesTitle": "What Sets Us Apart",
+    "quality1": "Solid Wood",
+    "quality1Desc": "Only premium hardwoods — oak, walnut, ash. No veneers, no particle board.",
+    "quality2": "Precision Steel",
+    "quality2Desc": "Hand-welded steel frames finished with durable powder coating.",
+    "quality3": "Detail Obsessed",
+    "quality3Desc": "Every joint, every edge, every surface is finished to perfection.",
+    "quality4": "Made in Czech Republic",
+    "quality4Desc": "Designed and handcrafted in our workshop with pride."
+  },
+  "products": {
+    "pageTitle": "Our Products",
+    "heroText": "Each piece tells a story of wood and steel",
+    "filterAll": "All",
+    "filterTables": "Tables",
+    "filterStorage": "Storage",
+    "filterSeating": "Seating",
+    "requestQuote": "Request Quote",
+    "details": "View Details",
+    "customNote": "Every product can be customized. Contact us for bespoke dimensions and finishes."
+  },
+  "custom": {
+    "pageTitle": "Design Your Own",
+    "heroText": "Your vision, our craftsmanship",
+    "intro": "Have a specific piece in mind? Tell us about your dream furniture and we'll bring it to life.",
+    "formTitle": "Request a Custom Piece",
+    "nameLabel": "Your Name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone (optional)",
+    "typeLabel": "Type of Furniture",
+    "typePlaceholder": "e.g., Coffee table, Bookshelf, Desk...",
+    "dimensionsLabel": "Preferred Dimensions (optional)",
+    "dimensionsPlaceholder": "e.g., 120cm x 60cm x 45cm",
+    "materialLabel": "Preferred Materials",
+    "materialWood": "Oak",
+    "materialWalnut": "Walnut",
+    "materialAsh": "Ash",
+    "materialOther": "Other / Not sure",
+    "descriptionLabel": "Describe Your Vision",
+    "descriptionPlaceholder": "Tell us about the style, function, and any inspiration you have...",
+    "budgetLabel": "Budget Range (optional)",
+    "submitBtn": "Send Request",
+    "successMessage": "Thank you! We'll get back to you within 48 hours.",
+    "configuratorTitle": "Interactive Configurator",
+    "configuratorSoon": "Our interactive furniture configurator is coming soon. In the meantime, use the form above to describe your ideal piece."
+  },
+  "contact": {
+    "pageTitle": "Get in Touch",
+    "heroText": "Let's create something extraordinary",
+    "formTitle": "Send Us a Message",
+    "nameLabel": "Your Name",
+    "emailLabel": "Email",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message",
+    "submitBtn": "Send Message",
+    "successMessage": "Message sent! We'll respond within 24 hours.",
+    "infoTitle": "Visit Our Workshop",
+    "address": "Czech Republic",
+    "emailInfo": "info@intermoscraft.com",
+    "phoneInfo": "+420 XXX XXX XXX",
+    "hours": "Mon – Fri: 9:00 – 17:00",
+    "socialTitle": "Follow Us"
+  },
+  "footer": {
+    "tagline": "Handcrafted furniture from solid wood and steel.",
+    "navigation": "Navigation",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "productItems": {
+    "nightstand": {
+      "name": "Nightstand NOCI",
+      "description": "Minimalist nightstand combining black steel with a solid oak shelf. The piece that outlasts you."
+    },
+    "coffeeTable": {
+      "name": "Coffee Table STOL",
+      "description": "Low-profile coffee table with a massive oak top and clean steel legs."
+    },
+    "shelf": {
+      "name": "Wall Shelf POLICE",
+      "description": "Floating wall shelf with steel brackets and oiled oak wood."
+    },
+    "desk": {
+      "name": "Desk PRACOVIŠTĚ",
+      "description": "Spacious work desk with built-in cable management and solid wood top."
+    },
+    "bench": {
+      "name": "Bench LAVICE",
+      "description": "Entryway bench with steel frame and a warm oak seat."
+    },
+    "tvStand": {
+      "name": "TV Stand MÉDIA",
+      "description": "Low media console with open shelving and hidden cable routing."
+    }
+  }
+}

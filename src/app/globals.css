@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-dark: #1A1612;
+  --color-brand-darker: #120F0C;
+  --color-brand-card: #242019;
+  --color-brand-border: #3A332A;
+  --color-brand-copper: #B5722C;
+  --color-brand-copper-light: #D4944C;
+  --color-brand-oak: #C8956D;
+  --color-brand-text: #F5F0EB;
+  --color-brand-muted: #A89B8C;
+  --color-brand-subtle: #6B5F52;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-brand-darker);
+  color: var(--color-brand-text);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-brand-copper);
+  color: white;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-brand-copper-light), var(--color-brand-copper));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
