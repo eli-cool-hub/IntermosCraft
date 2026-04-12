@@ -82,9 +82,7 @@ export default function HomeV2() {
         {(["nightstand", "coffeeTable", "desk"] as const).map((id, i) => (
           <div
             key={id}
-            className={`grid grid-cols-1 lg:grid-cols-2 min-h-[50vh] ${
-              i % 2 === 1 ? "lg:direction-rtl" : ""
-            }`}
+            className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]"
           >
             <div className={`relative min-h-[300px] ${i % 2 === 1 ? "lg:order-2" : ""}`}>
               {id === "nightstand" ? (

@@ -29,7 +29,7 @@ export default function FireHeroVideo({
   if (failed) {
     return (
       <div
-        className={`absolute inset-0 bg-cover bg-center scale-105 ${className}`}
+        className={`absolute inset-0 z-0 bg-cover bg-center scale-105 ${className}`}
         style={{ backgroundImage: `url(${posterSrc})` }}
         aria-hidden
       />
@@ -38,7 +38,7 @@ export default function FireHeroVideo({
 
   return (
     <video
-      className={`absolute inset-0 h-full w-full object-cover scale-105 ${className}`}
+      className={`absolute inset-0 z-0 h-full w-full object-cover scale-105 ${className}`}
       autoPlay
       muted
       loop

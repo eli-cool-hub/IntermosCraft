@@ -39,6 +39,9 @@ yarn-error.log*
 # netlify
 .netlify
 
+# deno (if present in workspace)
+deno.lock
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

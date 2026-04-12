@@ -10,6 +10,7 @@ import Image from "next/image";
  */
 export default function HomeV1() {
   const t = useTranslations();
+  const tv = useTranslations("variants");
 
   return (
     <div className="-mt-20">
@@ -63,10 +64,11 @@ export default function HomeV1() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="w-12 h-[1px] bg-brand-copper mx-auto mb-10" />
           <p className="text-3xl sm:text-4xl font-extralight leading-relaxed text-brand-text/90">
-            We don&apos;t make furniture.
+            {tv("philosophyLine1")}
             <br />
-            We forge{" "}
-            <span className="font-semibold text-gradient">heirlooms</span>.
+            {tv("philosophyForge")}{" "}
+            <span className="font-semibold text-gradient">{tv("philosophyHighlight")}</span>
+            .
           </p>
           <div className="w-12 h-[1px] bg-brand-copper mx-auto mt-10" />
         </div>

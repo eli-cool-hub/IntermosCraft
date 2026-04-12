@@ -60,10 +60,10 @@ export default function HomeV4() {
       <section className="bg-brand-darker">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative p-12 lg:p-20 flex flex-col justify-center min-h-[420px] bg-gradient-to-br from-[#2a1f14] to-brand-darker">
-            <span className="text-brand-flame text-xs tracking-[0.3em] uppercase font-bold">01 / Material</span>
-            <h3 className="text-4xl lg:text-5xl font-bold mt-4 mb-6">Solid Oak</h3>
+            <span className="text-brand-flame text-xs tracking-[0.3em] uppercase font-bold">01 / {tv("materialIndex")}</span>
+            <h3 className="text-4xl lg:text-5xl font-bold mt-4 mb-6">{tv("materialOakTitle")}</h3>
             <p className="text-brand-muted leading-relaxed max-w-md">
-              Hand-selected premium hardwood. Every grain tells a story. No veneers, no particle board.
+              {tv("materialOakDesc")}
             </p>
             <div className="mt-8 flex gap-3">
               <div className="w-10 h-10 rounded-full bg-[#C8956D]" />
@@ -72,10 +72,10 @@ export default function HomeV4() {
             </div>
           </div>
           <div className="relative p-12 lg:p-20 flex flex-col justify-center min-h-[420px] bg-gradient-to-bl from-[#1a1a1e] to-brand-darker">
-            <span className="text-brand-flame text-xs tracking-[0.3em] uppercase font-bold">02 / Material</span>
-            <h3 className="text-4xl lg:text-5xl font-bold mt-4 mb-6">Precision Steel</h3>
+            <span className="text-brand-flame text-xs tracking-[0.3em] uppercase font-bold">02 / {tv("materialIndex")}</span>
+            <h3 className="text-4xl lg:text-5xl font-bold mt-4 mb-6">{tv("materialSteelTitle")}</h3>
             <p className="text-brand-muted leading-relaxed max-w-md">
-              Hand-welded frames with durable powder coating. Every joint ground smooth. Built to carry weight for generations.
+              {tv("materialSteelDesc")}
             </p>
             <div className="mt-8 flex gap-3">
               <div className="w-10 h-10 rounded-full bg-[#2a2a2e]" />

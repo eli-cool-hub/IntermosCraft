@@ -73,9 +73,9 @@ export default function HomeV3() {
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-ember/40 to-transparent" />
         <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-ember/40 to-transparent" />
         <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-x-10 gap-y-2 py-3">
-          {["Minimalism", "Solid Wood", "Detail", "Quality", "Durability", "Handcraft"].map((word) => (
-            <span key={word} className="text-[10px] tracking-[0.5em] uppercase text-brand-copper/60 font-bold whitespace-nowrap">
-              {word}
+          {(["forgeK1", "forgeK2", "forgeK3", "forgeK4", "forgeK5", "forgeK6"] as const).map((key) => (
+            <span key={key} className="text-[10px] tracking-[0.5em] uppercase text-brand-copper/60 font-bold whitespace-nowrap">
+              {tv(key)}
             </span>
           ))}
         </div>
@@ -99,9 +99,10 @@ export default function HomeV3() {
               <div className="absolute bottom-0 p-8 lg:p-10">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-[2px] bg-brand-copper" />
-                  <span className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-bold">Featured</span>
+                  <span className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-bold">{tv("forgeFeaturedLabel")}</span>
                 </div>
-                <h3 className="text-3xl font-bold">{t("productItems.nightstand.name")}</h3>
+                <h3 className="text-3xl font-bold">{tv("forgeOutdoorTitle")}</h3>
+                <p className="text-white/70 text-sm mt-2 max-w-md">{tv("forgeOutdoorCaption")}</p>
               </div>
             </div>
             {/* Stacked right */}
@@ -153,13 +154,13 @@ export default function HomeV3() {
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-copper/40 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
           <span className="text-[15vw] font-black uppercase text-brand-border/[0.04] tracking-tighter whitespace-nowrap">
-            Bespoke
+            {tv("ctaBespokeWatermark")}
           </span>
         </div>
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black uppercase tracking-tight mb-6">
-            Your vision<br />
-            <span className="text-gradient">Our hands</span>
+            {tv("ctaVisionLine1")}<br />
+            <span className="text-gradient">{tv("ctaVisionLine2")}</span>
           </h2>
           <Link
             href="/custom"

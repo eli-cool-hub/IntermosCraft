@@ -72,7 +72,7 @@ export default function HomeV5() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-14">
             <div>
-              <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">Collection</p>
+              <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">{tv("collectionLabel")}</p>
               <h2 className="text-3xl sm:text-4xl font-extralight">{t("featured.title")}</h2>
             </div>
             <Link
@@ -124,9 +124,10 @@ export default function HomeV5() {
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <blockquote className="text-center max-w-2xl">
             <p className="text-3xl sm:text-4xl font-extralight text-white leading-snug">
-              &ldquo;We don&apos;t make furniture.
+              &ldquo;{tv("philosophyQuoteOpen")}
               <br />
-              We forge <span className="text-gradient-fire font-semibold">heirlooms</span>.&rdquo;
+              {tv("philosophyForge")}{" "}
+              <span className="text-gradient-fire font-semibold">{tv("philosophyQuoteHighlight")}</span>.&rdquo;
             </p>
           </blockquote>
         </div>
