@@ -11,6 +11,9 @@
   --color-brand-text: #F5F0EB;
   --color-brand-muted: #A89B8C;
   --color-brand-subtle: #6B5F52;
+  --color-brand-ember: #e85d04;
+  --color-brand-flame: #ff8c42;
+  --color-brand-ash: #2d1810;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
@@ -36,5 +39,31 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .text-gradient-fire {
+    background: linear-gradient(
+      135deg,
+      #fff8f0 0%,
+      var(--color-brand-flame) 45%,
+      var(--color-brand-ember) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-fire-vignette {
+    background: radial-gradient(
+        ellipse 90% 70% at 50% 85%,
+        rgba(232, 93, 4, 0.22) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 20% 30%,
+        rgba(255, 140, 66, 0.08) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to bottom, #0a0604 0%, #120f0c 40%, #1a120d 100%);
   }
 }

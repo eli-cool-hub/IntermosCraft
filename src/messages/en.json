@@ -137,5 +137,11 @@
       "name": "TV Stand MÉDIA",
       "description": "Low media console with open shelving and hidden cable routing."
     }
+  },
+  "variants": {
+    "fireTagline": "Fire that lasts",
+    "fireSupporting": "Outdoor living forged in matte steel, wood, and living flame.",
+    "hearthLead": "Earth, steel, and flame",
+    "hearthSupporting": "Workshop-born pieces for evenings that never end."
   }
 }

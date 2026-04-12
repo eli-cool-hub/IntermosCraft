@@ -137,5 +137,11 @@
       "name": "TV stolek MÉDIA",
       "description": "Nízká mediální konzole s otevřenými policemi a skrytým vedením kabelů."
     }
+  },
+  "variants": {
+    "fireTagline": "Oheň, který vydrží",
+    "fireSupporting": "Život venku v matné oceli, dřevě a živém plameni.",
+    "hearthLead": "Země, ocel a plamen",
+    "hearthSupporting": "Kousky z dílny — pro večery, které nekončí."
   }
 }

@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -12,11 +11,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Image
+            <img
               src="/logos/logo-full.png"
               alt="IntermosCraft"
-              width={160}
-              height={36}
               className="h-9 w-auto"
             />
             <p className="text-brand-muted text-sm leading-relaxed max-w-xs">
