@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 const VARIANTS = [
-  { href: "/", key: "V1", nameKey: "previewV1Name" as const, pitchKey: "previewV1Pitch" as const },
+  { href: "/v1", key: "V1", nameKey: "previewV1Name" as const, pitchKey: "previewV1Pitch" as const },
   { href: "/v2", key: "V2", nameKey: "previewV2Name" as const, pitchKey: "previewV2Pitch" as const },
   { href: "/v3", key: "V3", nameKey: "previewV3Name" as const, pitchKey: "previewV3Pitch" as const },
   { href: "/v4", key: "V4", nameKey: "previewV4Name" as const, pitchKey: "previewV4Pitch" as const },
@@ -38,7 +38,7 @@ export default function VariantPreviewPage() {
               <div className="p-8 flex flex-col flex-1">
                 <div className="flex items-baseline justify-between gap-4 mb-4">
                   <span className="text-brand-copper font-mono text-sm">{v.key}</span>
-                  {v.href === "/" && (
+                  {v.href === "/v1" && (
                     <span className="rounded-sm border border-brand-copper/40 px-2 py-0.5 text-[10px] uppercase tracking-widest text-brand-copper">
                       {t("previewCurrent")}
                     </span>

@@ -18,7 +18,7 @@ export default function HomeV5() {
     <div className="-mt-20">
       {/* HERO — full-screen video, minimal centered wordmark */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-        <FireHeroVideo posterSrc="/images/fire-pit-hero-2.png" />
+        <FireHeroVideo posterSrc={null} />
 
         <div className="absolute inset-0 bg-black/35" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
