@@ -2,6 +2,18 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import FireHeroVideo from "@/components/FireHeroVideo";
+import { products } from "@/data/products";
+
+const galleryProducts = products.slice(0, 6);
+
+const gridSpans = [
+  "col-span-1 row-span-2",
+  "col-span-1 row-span-1",
+  "col-span-1 row-span-1",
+  "col-span-1 row-span-1",
+  "col-span-1 row-span-2",
+  "col-span-1 row-span-1",
+];
 
 export default function HomeV5() {
   const t = useTranslations();
@@ -75,41 +87,85 @@ export default function HomeV5() {
         </div>
       </section>
 
-      {/* EDITORIAL PRODUCT GRID — alternating image + text */}
-      <section className="bg-brand-darker">
-        {(["nightstand", "coffeeTable", "desk"] as const).map((id, i) => (
-          <div
-            key={id}
-            className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]"
-          >
-            <div className={`relative min-h-[300px] ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-              {id === "nightstand" ? (
-                <Image
-                  src="/images/nightstand-reference.png"
-                  alt={t(`productItems.${id}.name`)}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-card to-brand-dark" />
-              )}
+      {/* GALLERY WALL — staggered product photo grid */}
+      <section className="py-24 bg-brand-darker">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-14">
+            <div>
+              <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
+                {tv("collectionLabel")}
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-extralight">{t("featured.title")}</h2>
             </div>
-            <div className={`flex flex-col justify-center p-12 lg:p-20 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-              <span className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-4">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="text-3xl font-light mb-4">{t(`productItems.${id}.name`)}</h3>
-              <p className="text-brand-muted leading-relaxed mb-8">{t(`productItems.${id}.description`)}</p>
-              <Link
-                href="/contact"
-                className="self-start text-brand-copper text-xs tracking-[0.3em] uppercase font-semibold hover:text-brand-copper-light transition-colors"
-              >
-                {t("products.requestQuote")} &rarr;
-              </Link>
-            </div>
+            <Link
+              href="/products"
+              className="hidden sm:block text-brand-copper text-xs tracking-[0.3em] uppercase hover:text-brand-copper-light transition-colors"
+            >
+              {t("products.seeAll")} &rarr;
+            </Link>
           </div>
-        ))}
+
+          {/* Desktop: staggered 3-col grid; Mobile: 1-col stack */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[220px] gap-2">
+            {galleryProducts.map((product, i) => (
+              <Link
+                key={product.id}
+                href="/products"
+                className={`group relative overflow-hidden bg-brand-card ${gridSpans[i] || "col-span-1 row-span-1"}`}
+              >
+                {product.heroImage ? (
+                  <Image
+                    src={product.heroImage}
+                    alt={t(`productItems.${product.id}.name`)}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-card to-brand-dark flex items-center justify-center">
+                    <div className="text-center">
+                      <svg className="w-10 h-10 text-brand-border/40 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
+                      </svg>
+                      <span className="text-brand-muted/50 text-xs tracking-wide uppercase">
+                        {t("products.comingSoon")}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
+                <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">
+                      {t(`productItems.${product.id}.name`)}
+                    </h3>
+                    <span className="text-brand-copper text-xs tracking-widest uppercase mt-1 inline-flex items-center gap-1">
+                      {t("products.details")}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Subtle border on hover */}
+                <div className="absolute inset-0 border border-transparent group-hover:border-brand-copper/20 transition-colors" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile "See All" link */}
+          <div className="mt-10 text-center sm:hidden">
+            <Link
+              href="/products"
+              className="text-brand-copper text-xs tracking-[0.3em] uppercase hover:text-brand-copper-light transition-colors"
+            >
+              {t("products.seeAll")} &rarr;
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* VALUES — warm card grid */}
