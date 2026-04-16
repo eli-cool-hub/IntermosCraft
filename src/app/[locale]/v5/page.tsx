@@ -13,7 +13,7 @@ export default function HomeV5() {
 
   return (
     <div className="-mt-20">
-      {/* HERO — full-screen video, logo + motto + dual CTA */}
+      {/* HERO — full-screen video, motto + dual CTA (logo lives in header) */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <FireHeroVideo posterSrc={null} />
 
@@ -22,12 +22,7 @@ export default function HomeV5() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_30%,rgba(0,0,0,0.5)_100%)]" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl">
-          <img
-            src="/logos/logo-full.png"
-            alt="IntermosCraft"
-            className="h-14 sm:h-16 mx-auto mb-8 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
-          />
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extralight text-white/90 tracking-wide mb-10 leading-snug">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extralight text-white/90 tracking-wide mb-10 leading-snug drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)]">
             {tv("fireTagline")}
           </h1>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
