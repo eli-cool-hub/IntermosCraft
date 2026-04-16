@@ -14,6 +14,7 @@ export interface Product {
   category: ProductCategory;
   heroImage: string | null;
   dimensionImage: string | null;
+  posterImage?: string | null;
   price: number | null;
   dimensions: ProductDimensions | null;
   features: ProductFeature[];
@@ -24,8 +25,9 @@ export const products: Product[] = [
     id: "nightstand",
     modelName: "Krokava",
     category: "storage",
-    heroImage: "/images/products/nightstand-hero.png",
+    heroImage: "/images/products/nightstand-clean.png",
     dimensionImage: "/images/products/nightstand-dimensions.png",
+    posterImage: "/images/products/nightstand-hero.png",
     price: 8790,
     dimensions: { width: 435, depth: 350, height: 400 },
     features: ["durable", "solidWood", "steel", "custom"],

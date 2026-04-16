@@ -34,188 +34,246 @@ export default function ProductsPage() {
   const pt = useTranslations("productItems");
   const ft = useTranslations("features");
   const st = useTranslations("specs");
+  const tv = useTranslations("variants");
   const [filter, setFilter] = useState<ProductCategory | "all">("all");
 
   const filtered =
     filter === "all" ? products : products.filter((p) => p.category === filter);
 
+  const featured = filtered.filter((p) => p.heroImage);
+  const upcoming = filtered.filter((p) => !p.heroImage);
+
   return (
     <>
-      {/* Hero */}
-      <section className="py-24 lg:py-32 bg-brand-dark">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* HERO */}
+      <section className="relative py-28 lg:py-36 bg-brand-dark overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(232,93,4,0.08),transparent_70%)]" />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-brand-copper" />
-              <span className="text-brand-copper text-sm tracking-[0.2em] uppercase font-medium">
-                IntermosCraft
+              <span className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold">
+                {tv("collectionLabel")}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-tight mb-6 leading-[0.95]">
               {t("pageTitle")}
             </h1>
-            <p className="text-xl text-brand-muted leading-relaxed">
+            <p className="text-xl text-brand-muted leading-relaxed font-light">
               {t("heroText")}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Filters + Product Detail Cards */}
-      <section className="py-16 bg-brand-darker">
+      {/* FILTERS */}
+      <section className="py-10 bg-brand-darker border-t border-brand-border/15 sticky top-20 z-20 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Filter buttons */}
-          <div className="flex flex-wrap gap-3 mb-16">
+          <div className="flex flex-wrap gap-3">
             {filterCategories.map((f) => (
               <button
                 key={f.key}
                 onClick={() => setFilter(f.key)}
-                className={`px-5 py-2 text-sm tracking-wide rounded-sm border transition-all duration-200 ${
+                className={`px-5 py-2 text-xs tracking-[0.2em] uppercase font-semibold border transition-all duration-200 ${
                   filter === f.key
                     ? "bg-brand-copper border-brand-copper text-white"
-                    : "bg-transparent border-brand-border text-brand-muted hover:border-brand-copper/50 hover:text-brand-text"
+                    : "bg-transparent border-brand-border/50 text-brand-muted hover:border-brand-copper/50 hover:text-brand-text"
                 }`}
               >
                 {t(f.tKey)}
               </button>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Product detail rows */}
-          <div className="space-y-0">
-            {filtered.map((product, i) => (
-              <div
-                key={product.id}
-                id={product.id}
-                className="grid grid-cols-1 lg:grid-cols-2 min-h-[480px] border-t border-brand-border/15 first:border-t-0"
+      {/* FEATURED PRODUCTS — magazine-style spreads */}
+      <section className="py-20 lg:py-28 bg-brand-darker">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-28 lg:space-y-36">
+          {featured.map((product, i) => (
+            <article
+              key={product.id}
+              id={product.id}
+              className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start"
+            >
+              {/* Giant index number — decorative */}
+              <span
+                className="absolute -top-8 -left-2 text-[9rem] lg:text-[12rem] font-black text-brand-border/[0.08] leading-none select-none pointer-events-none z-0"
+                aria-hidden
               >
-                {/* Image side */}
-                <div className={`relative min-h-[350px] lg:min-h-[480px] overflow-hidden ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                  {product.heroImage ? (
-                    <Image
-                      src={product.heroImage}
-                      alt={pt(`${product.id}.name`)}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-brand-card to-brand-dark flex items-center justify-center">
-                      <div className="text-center">
-                        <svg className="w-16 h-16 text-brand-border/30 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-                        </svg>
-                        <span className="text-brand-subtle text-sm">{t("comingSoon")}</span>
-                      </div>
-                    </div>
-                  )}
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              {/* Image column — sticky on desktop */}
+              <div className={`lg:col-span-7 relative z-10 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+                {/* Main photo with corner frame */}
+                <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden bg-brand-card group">
+                  <div className="absolute -inset-4 bg-gradient-to-br from-brand-copper/8 via-transparent to-brand-ember/8 blur-2xl pointer-events-none" />
+                  <Image
+                    src={product.heroImage!}
+                    alt={pt(`${product.id}.name`)}
+                    fill
+                    className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                  />
+                  <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
+                  <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
+                  <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
+                  <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
                 </div>
 
-                {/* Info side */}
-                <div className={`flex flex-col justify-center p-10 lg:p-16 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <span className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  <h2 className="text-3xl lg:text-4xl font-light mb-1">
-                    {pt(`${product.id}.name`)}
-                  </h2>
-                  <p className="text-brand-copper text-sm font-semibold tracking-wide mb-5">
-                    {product.modelName}
-                  </p>
-
-                  <p className="text-brand-muted leading-relaxed mb-6">
-                    {pt(`${product.id}.description`)}
-                  </p>
-
-                  {/* Feature badges */}
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    {product.features.map((feat) => (
-                      <span
-                        key={feat}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-card border border-brand-border/30 text-brand-text text-xs tracking-wide"
-                      >
-                        {featureIcons[feat]}
-                        {ft(feat)}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Price */}
-                  {product.price && (
-                    <div className="inline-flex self-start px-5 py-3 border-2 border-brand-copper/40 mb-6">
-                      <span className="text-2xl font-bold text-white tracking-tight">
-                        {formatPrice(product.price)}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Dimensions */}
-                  {product.dimensions && (
-                    <div className="mb-6">
-                      <h4 className="text-brand-copper text-xs tracking-[0.3em] uppercase font-bold mb-3">
-                        {st("dimensions")}
-                      </h4>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
-                        <div>
-                          <span className="text-brand-muted">{st("width")}</span>
-                          <p className="text-white font-semibold">{product.dimensions.width} {st("mm")}</p>
-                        </div>
-                        <div>
-                          <span className="text-brand-muted">{st("depth")}</span>
-                          <p className="text-white font-semibold">{product.dimensions.depth} {st("mm")}</p>
-                        </div>
-                        <div>
-                          <span className="text-brand-muted">{st("height")}</span>
-                          <p className="text-white font-semibold">{product.dimensions.height} {st("mm")}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Dimension drawing */}
-                  {product.dimensionImage && (
-                    <div className="relative w-full max-w-[280px] aspect-square mb-6 bg-brand-card/50 border border-brand-border/20 overflow-hidden">
+                {/* Dimension drawing — tucked below photo as a detail */}
+                {product.dimensionImage && (
+                  <div className="mt-6 grid grid-cols-[auto_1fr] gap-5 items-center p-5 bg-brand-card/40 border border-brand-border/20">
+                    <div className="relative w-24 h-24 shrink-0">
                       <Image
                         src={product.dimensionImage}
                         alt={`${pt(`${product.id}.name`)} — ${st("dimensions")}`}
                         fill
-                        className="object-contain p-2"
-                        sizes="280px"
+                        className="object-contain"
+                        sizes="96px"
                       />
                     </div>
-                  )}
+                    <div>
+                      <p className="text-brand-copper text-[10px] tracking-[0.3em] uppercase font-bold mb-2">
+                        {st("dimensions")}
+                      </p>
+                      {product.dimensions && (
+                        <div className="flex gap-5 text-sm">
+                          <span>
+                            <span className="text-brand-muted">{st("width")}</span>{" "}
+                            <span className="text-white font-semibold">{product.dimensions.width}{st("mm")}</span>
+                          </span>
+                          <span>
+                            <span className="text-brand-muted">{st("depth")}</span>{" "}
+                            <span className="text-white font-semibold">{product.dimensions.depth}{st("mm")}</span>
+                          </span>
+                          <span>
+                            <span className="text-brand-muted">{st("height")}</span>{" "}
+                            <span className="text-white font-semibold">{product.dimensions.height}{st("mm")}</span>
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
 
-                  {/* CTA */}
+              {/* Info column */}
+              <div className={`lg:col-span-5 relative z-10 lg:sticky lg:top-40 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-bold">
+                    {String(i + 1).padStart(2, "0")} / {tv("forgeFeaturedLabel")}
+                  </span>
+                  <div className="w-12 h-[1px] bg-brand-copper/50" />
+                </div>
+
+                <h2 className="text-4xl lg:text-5xl font-extralight tracking-tight text-white leading-tight mb-2">
+                  {pt(`${product.id}.name`)}
+                </h2>
+                <p className="text-brand-copper text-lg italic tracking-wide mb-8">
+                  {product.modelName}
+                </p>
+
+                <p className="text-brand-muted leading-relaxed mb-8 text-base lg:text-lg font-light">
+                  {pt(`${product.id}.description`)}
+                </p>
+
+                {/* Feature badges */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {product.features.map((feat) => (
+                    <span
+                      key={feat}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-card/60 border border-brand-border/30 text-brand-text text-xs tracking-wide"
+                    >
+                      {featureIcons[feat]}
+                      {ft(feat)}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Price + CTA */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-6 border-t border-brand-border/20">
+                  {product.price && (
+                    <div>
+                      <p className="text-brand-subtle text-[10px] tracking-[0.3em] uppercase mb-1">
+                        {t("priceFrom")}
+                      </p>
+                      <p className="text-3xl font-bold text-white tracking-tight">
+                        {formatPrice(product.price)}
+                      </p>
+                    </div>
+                  )}
                   <Link
                     href="/contact"
-                    className="inline-flex self-start items-center gap-2 px-8 py-3 bg-gradient-to-r from-brand-copper to-brand-ember text-white font-bold text-sm tracking-[0.15em] uppercase hover:shadow-[0_0_30px_rgba(181,114,44,0.3)] transition-shadow"
+                    className="sm:ml-auto inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-brand-copper to-brand-ember text-white font-bold text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_40px_rgba(181,114,44,0.4)] transition-shadow"
                   >
                     {t("requestQuote")}
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Link>
                 </div>
               </div>
-            ))}
-          </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-          {/* Custom note */}
-          <div className="mt-20 p-10 bg-brand-card border border-brand-border/30 text-center">
-            <p className="text-brand-muted text-lg">
-              {t("customNote")}
-            </p>
-            <Link
-              href="/custom"
-              className="inline-flex items-center gap-2 mt-6 text-brand-copper hover:text-brand-copper-light transition-colors font-semibold text-sm tracking-widest uppercase"
-            >
-              {t("requestQuote")}
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+      {/* UPCOMING COLLECTION — editorial list, no empty boxes */}
+      {upcoming.length > 0 && (
+        <section className="py-24 bg-brand-dark border-t border-brand-border/15">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-14">
+              <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
+                {tv("collectionLabel")} &mdash; 2026
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-extralight tracking-tight">
+                {t("comingSoon")}
+              </h2>
+            </div>
+
+            <ul className="divide-y divide-brand-border/15">
+              {upcoming.map((p, i) => (
+                <li key={p.id} id={p.id}>
+                  <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-8 py-7">
+                    <span className="text-brand-border/70 text-sm font-black tracking-widest w-10">
+                      {String(featured.length + i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-xl sm:text-2xl font-light text-white truncate">
+                        {pt(`${p.id}.name`)}
+                      </h3>
+                      <p className="text-brand-muted/80 text-sm mt-1 italic truncate">
+                        {p.modelName} &middot; {t(`filter${p.category.charAt(0).toUpperCase() + p.category.slice(1)}` as "filterTables")}
+                      </p>
+                    </div>
+                    <span className="hidden sm:inline-block text-[10px] tracking-[0.3em] uppercase text-brand-subtle">
+                      {t("comingSoon")}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
+        </section>
+      )}
+
+      {/* Custom CTA */}
+      <section className="py-24 bg-brand-darker">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-brand-muted text-lg mb-8 leading-relaxed font-light">
+            {t("customNote")}
+          </p>
+          <Link
+            href="/custom"
+            className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-brand-copper text-brand-copper font-bold text-xs tracking-[0.2em] uppercase hover:bg-brand-copper hover:text-white transition-colors"
+          >
+            {t("requestQuote")}
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </section>
     </>

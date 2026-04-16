@@ -2,18 +2,10 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import FireHeroVideo from "@/components/FireHeroVideo";
-import { products } from "@/data/products";
+import { products, formatPrice } from "@/data/products";
 
-const galleryProducts = products.slice(0, 6);
-
-const gridSpans = [
-  "col-span-1 row-span-2",
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-1",
-  "col-span-1 row-span-2",
-  "col-span-1 row-span-1",
-];
+const signature = products.find((p) => p.heroImage) ?? products[0];
+const upcoming = products.filter((p) => p.id !== signature.id).slice(0, 4);
 
 export default function HomeV5() {
   const t = useTranslations();
@@ -87,82 +79,176 @@ export default function HomeV5() {
         </div>
       </section>
 
-      {/* GALLERY WALL — staggered product photo grid */}
-      <section className="py-24 bg-brand-darker">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* SIGNATURE PIECE — editorial feature with dramatic scale */}
+      <section className="relative py-28 lg:py-36 bg-brand-darker overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_30%_40%,rgba(181,114,44,0.08),transparent_70%)] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="flex items-end justify-between mb-14">
             <div>
               <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
-                {tv("collectionLabel")}
+                {tv("collectionLabel")} &mdash; 01
               </p>
-              <h2 className="text-3xl sm:text-4xl font-extralight">{t("featured.title")}</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-tight">
+                {t("featured.title")}
+              </h2>
             </div>
             <Link
               href="/products"
-              className="hidden sm:block text-brand-copper text-xs tracking-[0.3em] uppercase hover:text-brand-copper-light transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 text-brand-copper text-xs tracking-[0.3em] uppercase hover:text-brand-copper-light transition-colors"
             >
-              {t("products.seeAll")} &rarr;
+              {t("products.seeAll")}
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
 
-          {/* Desktop: staggered 3-col grid; Mobile: 1-col stack */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[220px] gap-2">
-            {galleryProducts.map((product, i) => (
-              <Link
-                key={product.id}
-                href="/products"
-                className={`group relative overflow-hidden bg-brand-card ${gridSpans[i] || "col-span-1 row-span-1"}`}
-              >
-                {product.heroImage ? (
-                  <Image
-                    src={product.heroImage}
-                    alt={t(`productItems.${product.id}.name`)}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-card to-brand-dark flex items-center justify-center">
-                    <div className="text-center">
-                      <svg className="w-10 h-10 text-brand-border/40 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-                      </svg>
-                      <span className="text-brand-muted/50 text-xs tracking-wide uppercase">
-                        {t("products.comingSoon")}
-                      </span>
-                    </div>
+          {/* Asymmetric feature layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Large product image with dramatic frame */}
+            <div className="lg:col-span-7 relative">
+              <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden bg-brand-card group">
+                {/* Glow behind */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-brand-copper/10 via-transparent to-brand-ember/10 blur-2xl pointer-events-none" />
+
+                <Image
+                  src={signature.heroImage!}
+                  alt={t(`productItems.${signature.id}.name`)}
+                  fill
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  priority
+                />
+
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
+                <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
+                <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
+                <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
+
+                {/* Model badge — bottom left */}
+                <div className="absolute bottom-6 left-6 bg-brand-darker/90 backdrop-blur-sm px-4 py-2 border-l-2 border-brand-copper">
+                  <span className="text-brand-copper text-[10px] tracking-[0.3em] uppercase font-bold">
+                    {signature.modelName}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Editorial info column */}
+            <div className="lg:col-span-5 flex flex-col">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-7xl lg:text-8xl font-black text-brand-border/30 leading-none select-none">
+                  01
+                </span>
+                <div className="w-12 h-[1px] bg-brand-copper" />
+                <span className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-bold">
+                  {tv("forgeFeaturedLabel")}
+                </span>
+              </div>
+
+              <h3 className="text-4xl lg:text-5xl font-extralight tracking-tight text-white leading-tight mb-2">
+                {t(`productItems.${signature.id}.name`)}
+              </h3>
+              <p className="text-brand-copper text-lg font-light italic tracking-wide mb-8">
+                {signature.modelName}
+              </p>
+
+              <p className="text-brand-muted leading-relaxed mb-8 text-base lg:text-lg font-light">
+                {t(`productItems.${signature.id}.description`)}
+              </p>
+
+              {/* Feature chips */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {signature.features.map((feat) => (
+                  <span
+                    key={feat}
+                    className="px-3 py-1.5 border border-brand-border/40 text-brand-text text-xs tracking-wide"
+                  >
+                    {t(`features.${feat}`)}
+                  </span>
+                ))}
+              </div>
+
+              {/* Price + CTA row */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-6 border-t border-brand-border/20">
+                {signature.price && (
+                  <div>
+                    <p className="text-brand-subtle text-[10px] tracking-[0.3em] uppercase mb-1">
+                      {t("products.priceFrom")}
+                    </p>
+                    <p className="text-2xl font-bold text-white tracking-tight">
+                      {formatPrice(signature.price)}
+                    </p>
                   </div>
                 )}
+                <Link
+                  href={`/products#${signature.id}`}
+                  className="sm:ml-auto inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-brand-copper to-brand-ember text-white font-bold text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_30px_rgba(181,114,44,0.4)] transition-shadow"
+                >
+                  {t("products.details")}
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300" />
-                <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">
-                      {t(`productItems.${product.id}.name`)}
-                    </h3>
-                    <span className="text-brand-copper text-xs tracking-widest uppercase mt-1 inline-flex items-center gap-1">
-                      {t("products.details")}
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Subtle border on hover */}
-                <div className="absolute inset-0 border border-transparent group-hover:border-brand-copper/20 transition-colors" />
-              </Link>
-            ))}
+      {/* THE COLLECTION — editorial upcoming list */}
+      <section className="py-24 bg-brand-dark border-t border-brand-border/15">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
+              {tv("collectionLabel")} &mdash; 2026
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-extralight tracking-tight">
+              {t("featured.viewAll")}
+            </h2>
           </div>
 
-          {/* Mobile "See All" link */}
-          <div className="mt-10 text-center sm:hidden">
+          <ul className="divide-y divide-brand-border/15">
+            {upcoming.map((p, i) => (
+              <li key={p.id}>
+                <Link
+                  href={`/products#${p.id}`}
+                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-8 py-6 hover:bg-brand-card/40 transition-colors px-2 -mx-2"
+                >
+                  <span className="text-brand-border/70 group-hover:text-brand-copper text-sm font-black tracking-widest transition-colors w-10">
+                    {String(i + 2).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-xl sm:text-2xl font-light text-white group-hover:text-brand-copper transition-colors truncate">
+                      {t(`productItems.${p.id}.name`)}
+                    </h3>
+                    <p className="text-brand-muted/80 text-sm mt-1 italic truncate">
+                      {p.modelName}
+                    </p>
+                  </div>
+                  <span className="hidden sm:inline-block text-[10px] tracking-[0.3em] uppercase text-brand-subtle group-hover:text-brand-copper transition-colors">
+                    {t("products.comingSoon")}
+                    <svg className="inline-block w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="text-center mt-14">
             <Link
               href="/products"
-              className="text-brand-copper text-xs tracking-[0.3em] uppercase hover:text-brand-copper-light transition-colors"
+              className="inline-flex items-center gap-2 text-brand-copper text-xs tracking-[0.3em] uppercase hover:text-brand-copper-light transition-colors"
             >
-              {t("products.seeAll")} &rarr;
+              {t("products.seeAll")}
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
         </div>
