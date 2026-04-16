@@ -60,7 +60,23 @@
     "filterSeating": "Seating",
     "requestQuote": "Request Quote",
     "details": "View Details",
-    "customNote": "Every product can be customized. Contact us for bespoke dimensions and finishes."
+    "customNote": "Every product can be customized. Contact us for bespoke dimensions and finishes.",
+    "seeAll": "See All Products",
+    "comingSoon": "Photo coming soon",
+    "priceFrom": "from"
+  },
+  "features": {
+    "durable": "Durable",
+    "solidWood": "Solid wood",
+    "steel": "Precision steel",
+    "custom": "Custom production"
+  },
+  "specs": {
+    "dimensions": "Dimensions",
+    "width": "Width",
+    "depth": "Depth",
+    "height": "Height",
+    "mm": "mm"
   },
   "custom": {
     "pageTitle": "Design Your Own",

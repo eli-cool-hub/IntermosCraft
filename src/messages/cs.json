@@ -60,7 +60,23 @@
     "filterSeating": "Sezení",
     "requestQuote": "Poptávka",
     "details": "Detail",
-    "customNote": "Každý produkt lze přizpůsobit. Kontaktujte nás pro zakázkové rozměry a povrchové úpravy."
+    "customNote": "Každý produkt lze přizpůsobit. Kontaktujte nás pro zakázkové rozměry a povrchové úpravy.",
+    "seeAll": "Zobrazit všechny produkty",
+    "comingSoon": "Foto již brzy",
+    "priceFrom": "od"
+  },
+  "features": {
+    "durable": "Odolný",
+    "solidWood": "Masivní dřevo",
+    "steel": "Pevná ocel",
+    "custom": "Zakázková výroba"
+  },
+  "specs": {
+    "dimensions": "Rozměry",
+    "width": "Šířka",
+    "depth": "Hloubka",
+    "height": "Výška",
+    "mm": "mm"
   },
   "custom": {
     "pageTitle": "Navrhněte si vlastní",
