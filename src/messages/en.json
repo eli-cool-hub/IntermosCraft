@@ -181,20 +181,6 @@
     "forgeK6": "Handcraft",
     "ctaBespokeWatermark": "Bespoke",
     "ctaVisionLine1": "Your vision",
-    "ctaVisionLine2": "Our hands",
-    "previewTitle": "Choose a homepage direction",
-    "previewIntro": "Five distinct concepts for IntermosCraft. Same brand and navigation — different mood and layout. Pick one as the starting point; we fold the rest into the final site.",
-    "previewV1Name": "Atelier",
-    "previewV1Pitch": "Gallery showroom — full-bleed photography, light typography, calm luxury.",
-    "previewV2Name": "Monolith",
-    "previewV2Pitch": "Editorial magazine — giant hero, oversized numbers, alternating story rows.",
-    "previewV3Name": "Forge",
-    "previewV3Pitch": "Industrial luxe — split hero, keyword strip, asymmetric grid, bold type.",
-    "previewV4Name": "Ember",
-    "previewV4Pitch": "Full-screen fire video — warm glow, cinematic headline, earthy materials story.",
-    "previewV5Name": "Nocturne",
-    "previewV5Pitch": "Ultra-minimal video — logo-first hero, reveal on scroll, quiet confidence.",
-    "previewOpen": "Open concept",
-    "previewCurrent": "Default homepage"
+    "ctaVisionLine2": "Our hands"
   }
 }
