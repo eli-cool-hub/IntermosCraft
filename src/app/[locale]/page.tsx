@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import FireHeroVideo from "@/components/FireHeroVideo";
+import ProductRasterFrame from "@/components/ProductRasterFrame";
 import { products, formatPrice } from "@/data/products";
 
 const signature = products.find((p) => p.heroImage) ?? products[0];
@@ -101,24 +101,27 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7 relative">
-              <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden bg-brand-card group">
+              <div className="relative overflow-hidden bg-brand-card group">
                 <div className="absolute -inset-4 bg-gradient-to-br from-brand-copper/10 via-transparent to-brand-ember/10 blur-2xl pointer-events-none" />
 
-                <Image
-                  src={signature.heroImage!}
-                  alt={t(`productItems.${signature.id}.name`)}
-                  fill
-                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  priority
-                />
+                <div className="relative z-10 transition-transform duration-700 group-hover:scale-[1.01]">
+                  <ProductRasterFrame
+                    src={signature.heroImage!}
+                    intrinsic={signature.heroIntrinsicSize ?? { w: 16, h: 9 }}
+                    alt={t(`productItems.${signature.id}.name`)}
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                    priority
+                  />
+                </div>
 
-                <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
-                <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
-                <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
-                <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
+                <div className="pointer-events-none absolute inset-0 z-20">
+                  <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
+                  <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
+                  <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
+                  <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
+                </div>
 
-                <div className="absolute bottom-6 left-6 bg-brand-darker/90 backdrop-blur-sm px-4 py-2 border-l-2 border-brand-copper">
+                <div className="absolute bottom-6 left-6 z-30 bg-brand-darker/90 backdrop-blur-sm px-4 py-2 border-l-2 border-brand-copper">
                   <span className="text-brand-copper text-[10px] tracking-[0.3em] uppercase font-bold">
                     {signature.modelName}
                   </span>
