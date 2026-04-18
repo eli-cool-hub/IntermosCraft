@@ -1,10 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import { products, filterCategories, formatPrice, type ProductCategory } from "@/data/products";
+import ProductRasterFrame from "@/components/ProductRasterFrame";
 
 const featureIcons: Record<string, React.ReactNode> = {
   durable: (
@@ -106,40 +106,34 @@ export default function ProductsPage() {
 
               {/* Image column — sticky on desktop */}
               <div className={`lg:col-span-7 relative z-10 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                {/* Main photo with corner frame */}
-                <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden bg-brand-card group">
+                {/* Main photo — full art visible (no aspect-box crop) */}
+                <div className="relative overflow-hidden bg-brand-card group">
                   <div className="absolute -inset-4 bg-gradient-to-br from-brand-copper/8 via-transparent to-brand-ember/8 blur-2xl pointer-events-none" />
-                  <Image
-                    src={product.heroImage!}
-                    alt={pt(`${product.id}.name`)}
-                    fill
-                    className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                    sizes="(max-width: 1024px) 100vw, 58vw"
-                  />
-                  <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
-                  <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
-                  <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
-                  <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
+                  <div className="relative z-10 transition-transform duration-700 group-hover:scale-[1.01]">
+                    <ProductRasterFrame
+                      src={product.heroImage!}
+                      intrinsic={product.heroIntrinsicSize ?? { w: 16, h: 9 }}
+                      alt={pt(`${product.id}.name`)}
+                      sizes="(max-width: 1024px) 100vw, 58vw"
+                    />
+                  </div>
+                  <div className="pointer-events-none absolute inset-0 z-20">
+                    <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
+                    <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
+                    <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
+                    <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
+                  </div>
                 </div>
 
-                {/* Dimension drawing — tucked below photo as a detail */}
+                {/* Dimension sheet — full graphic, readable on all viewports */}
                 {product.dimensionImage && (
-                  <div className="mt-6 grid grid-cols-[auto_1fr] gap-5 items-center p-5 bg-brand-card/40 border border-brand-border/20">
-                    <div className="relative w-24 h-24 shrink-0">
-                      <Image
-                        src={product.dimensionImage}
-                        alt={`${pt(`${product.id}.name`)} — ${st("dimensions")}`}
-                        fill
-                        className="object-contain"
-                        sizes="96px"
-                      />
-                    </div>
+                  <div className="mt-6 space-y-5 p-5 sm:p-6 bg-brand-card/40 border border-brand-border/20">
                     <div>
                       <p className="text-brand-copper text-[10px] tracking-[0.3em] uppercase font-bold mb-2">
                         {st("dimensions")}
                       </p>
                       {product.dimensions && (
-                        <div className="flex gap-5 text-sm">
+                        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
                           <span>
                             <span className="text-brand-muted">{st("width")}</span>{" "}
                             <span className="text-white font-semibold">{product.dimensions.width}{st("mm")}</span>
@@ -155,6 +149,13 @@ export default function ProductsPage() {
                         </div>
                       )}
                     </div>
+                    <ProductRasterFrame
+                      src={product.dimensionImage}
+                      intrinsic={product.dimensionIntrinsicSize ?? { w: 2, h: 3 }}
+                      alt={`${pt(`${product.id}.name`)} — ${st("dimensions")}`}
+                      maxHeightClass="max-h-[min(75svh,820px)]"
+                      sizes="(max-width: 1024px) 100vw, 480px"
+                    />
                   </div>
                 )}
               </div>
