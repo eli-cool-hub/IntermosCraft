@@ -63,7 +63,17 @@
     "customNote": "Každý produkt lze přizpůsobit. Kontaktujte nás pro zakázkové rozměry a povrchové úpravy.",
     "seeAll": "Zobrazit všechny produkty",
     "comingSoon": "Foto již brzy",
-    "priceFrom": "od"
+    "priceFrom": "od",
+    "poster": {
+      "tagline": "Dřevo a ocel. Řemeslo, které vás přežije.",
+      "headlineSuffix": "KTERÝ VÁS PŘEŽIJE",
+      "ctaPrimary": "POPTAT"
+    }
+  },
+  "valuePropsStrip": {
+    "longLife": "Dlouhá životnost",
+    "handcraft": "Ruční práce",
+    "personalization": "Možnost personalizace"
   },
   "features": {
     "durable": "Odolný",
@@ -130,27 +140,27 @@
   },
   "productItems": {
     "nightstand": {
-      "name": "Noční stolek NOCI",
+      "name": "Noční stolek",
       "description": "Minimalistický noční stolek kombinující černou ocel s masivní dubovou poličkou. Kus, který vás přežije."
     },
     "coffeeTable": {
-      "name": "Konferenční stolek STOL",
+      "name": "Konferenční stolek",
       "description": "Nízký konferenční stolek s masivní dubovou deskou a čistými ocelovými nohami."
     },
     "shelf": {
-      "name": "Nástěnná police POLICE",
+      "name": "Nástěnná police",
       "description": "Plovoucí nástěnná police s ocelovými držáky a olejovaným dubovým dřevem."
     },
     "desk": {
-      "name": "Pracovní stůl PRACOVIŠTĚ",
+      "name": "Pracovní stůl",
       "description": "Prostorný pracovní stůl s integrovaným vedením kabelů a masivní dřevěnou deskou."
     },
     "bench": {
-      "name": "Lavice LAVICE",
+      "name": "Lavice",
       "description": "Předsíňová lavice s ocelovým rámem a teplým dubovým sedákem."
     },
     "tvStand": {
-      "name": "TV stolek MÉDIA",
+      "name": "TV stolek",
       "description": "Nízká mediální konzole s otevřenými policemi a skrytým vedením kabelů."
     }
   },

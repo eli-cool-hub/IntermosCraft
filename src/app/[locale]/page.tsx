@@ -1,10 +1,10 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import FireHeroVideo from "@/components/FireHeroVideo";
-import { products, formatPrice } from "@/data/products";
+import ProductPosterCard from "@/components/ProductPosterCard";
+import { products } from "@/data/products";
 
-const signature = products.find((p) => p.heroImage) ?? products[0];
+const signature = products.find((p) => p.cleanImage) ?? products[0];
 const upcoming = products.filter((p) => p.id !== signature.id).slice(0, 4);
 
 export default function HomePage() {
@@ -74,12 +74,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SIGNATURE PIECE — editorial feature with dramatic scale */}
-      <section className="relative py-28 lg:py-36 bg-brand-darker overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_30%_40%,rgba(181,114,44,0.08),transparent_70%)] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="flex items-end justify-between mb-14">
+      {/* SIGNATURE PIECE — first product, presented in the brand poster style */}
+      <section className="relative py-20 lg:py-28 bg-brand-darker overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-10 lg:mb-14 px-2">
             <div>
               <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
                 {tv("collectionLabel")} &mdash; 01
@@ -99,89 +97,13 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-7 relative">
-              <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden bg-brand-card group">
-                <div className="absolute -inset-4 bg-gradient-to-br from-brand-copper/10 via-transparent to-brand-ember/10 blur-2xl pointer-events-none" />
-
-                <Image
-                  src={signature.heroImage!}
-                  alt={t(`productItems.${signature.id}.name`)}
-                  fill
-                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                  priority
-                />
-
-                <div className="absolute top-0 left-0 w-16 h-[2px] bg-brand-copper" />
-                <div className="absolute top-0 left-0 w-[2px] h-16 bg-brand-copper" />
-                <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-brand-copper" />
-                <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-brand-copper" />
-
-                <div className="absolute bottom-6 left-6 bg-brand-darker/90 backdrop-blur-sm px-4 py-2 border-l-2 border-brand-copper">
-                  <span className="text-brand-copper text-[10px] tracking-[0.3em] uppercase font-bold">
-                    {signature.modelName}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 flex flex-col">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-7xl lg:text-8xl font-black text-brand-border/30 leading-none select-none">
-                  01
-                </span>
-                <div className="w-12 h-[1px] bg-brand-copper" />
-                <span className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-bold">
-                  {tv("forgeFeaturedLabel")}
-                </span>
-              </div>
-
-              <h3 className="text-4xl lg:text-5xl font-extralight tracking-tight text-white leading-tight mb-2">
-                {t(`productItems.${signature.id}.name`)}
-              </h3>
-              <p className="text-brand-copper text-lg font-light italic tracking-wide mb-8">
-                {signature.modelName}
-              </p>
-
-              <p className="text-brand-muted leading-relaxed mb-8 text-base lg:text-lg font-light">
-                {t(`productItems.${signature.id}.description`)}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-8">
-                {signature.features.map((feat) => (
-                  <span
-                    key={feat}
-                    className="px-3 py-1.5 border border-brand-border/40 text-brand-text text-xs tracking-wide"
-                  >
-                    {t(`features.${feat}`)}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-6 border-t border-brand-border/20">
-                {signature.price && (
-                  <div>
-                    <p className="text-brand-subtle text-[10px] tracking-[0.3em] uppercase mb-1">
-                      {t("products.priceFrom")}
-                    </p>
-                    <p className="text-2xl font-bold text-white tracking-tight">
-                      {formatPrice(signature.price)}
-                    </p>
-                  </div>
-                )}
-                <Link
-                  href={`/products#${signature.id}`}
-                  className="sm:ml-auto inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-brand-copper to-brand-ember text-white font-bold text-xs tracking-[0.2em] uppercase hover:shadow-[0_0_30px_rgba(181,114,44,0.4)] transition-shadow"
-                >
-                  {t("products.details")}
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ProductPosterCard
+            product={signature}
+            index={1}
+            variant="compact"
+            ctaHref={`/products#${signature.id}`}
+            priority
+          />
         </div>
       </section>
 
