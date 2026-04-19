@@ -85,11 +85,19 @@ const VALUE_PROP_ICONS = {
   ),
 };
 
+/**
+ * Crops chosen to actually show what each label means on the nightstand-clean
+ * photo (1024x969). Positions tuned against the canonical image:
+ *   - Minimalismus  → full product, clean silhouette
+ *   - Masiv         → wooden shelf inside the cube (warm grain)
+ *   - Detail        → laser-cut "Krokava" stencil on the steel side
+ *   - Kvalita       → crisp top corner of the welded steel shell
+ */
 const THUMB_CROPS: Array<{ caption: string; pos: string; scale: number }> = [
   { caption: "Minimalismus", pos: "50% 50%", scale: 1.0 },
-  { caption: "Masiv", pos: "65% 80%", scale: 1.6 },
-  { caption: "Detail", pos: "30% 30%", scale: 2.0 },
-  { caption: "Kvalita", pos: "75% 30%", scale: 1.8 },
+  { caption: "Masiv", pos: "50% 70%", scale: 1.9 },
+  { caption: "Detail", pos: "22% 38%", scale: 2.6 },
+  { caption: "Kvalita", pos: "90% 12%", scale: 2.8 },
 ];
 
 const VALUE_PROPS: Array<{
@@ -114,10 +122,12 @@ export default function ProductPosterVariantF({ product }: Props) {
   const ft = useTranslations("features");
   const pi = useTranslations("productItems");
   const tpp = useTranslations("products.poster");
+  const tspec = useTranslations("specs");
 
   const photo = product.cleanImage;
   const photoSize = product.cleanImageIntrinsicSize ?? { w: 1024, h: 969 };
   const productName = pi(`${product.id}.name`).toUpperCase();
+  const dims = product.dimensions;
 
   return (
     <PosterPlate intensity="strong">
@@ -137,11 +147,8 @@ export default function ProductPosterVariantF({ product }: Props) {
           <div className="lg:col-span-5 order-1">
             <h2 className="font-extralight text-white tracking-tight uppercase leading-[0.95] text-3xl sm:text-4xl lg:text-6xl xl:text-[4.25rem]">
               <span className="block">{productName}</span>
-              <span className="block mt-1 font-light">
-                <span className="text-white">Který vás </span>
-                <span className="text-brand-copper-light font-bold">
-                  Přežije
-                </span>
+              <span className="block mt-2 text-brand-copper-light font-light text-lg sm:text-xl lg:text-2xl tracking-[0.35em] normal-case">
+                {product.modelName}
               </span>
             </h2>
 
@@ -189,13 +196,57 @@ export default function ProductPosterVariantF({ product }: Props) {
                   <span className="text-brand-copper-light"> &mdash;</span> na
                   poptávku
                 </p>
-                <p className="text-brand-copper text-[9px] sm:text-[10px] tracking-[0.3em] uppercase mt-0.5">
-                  {product.modelName}
-                </p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* DIMENSIONS — technical sketch + spec list */}
+        {dims && (
+          <div className="mt-8 lg:mt-14 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-black/35 border border-brand-border/30 px-5 sm:px-7 lg:px-9 py-6 sm:py-7 lg:py-8">
+            <div className="md:col-span-7 flex justify-center">
+              <DimensionSketch
+                w={dims.width}
+                d={dims.depth}
+                h={dims.height}
+              />
+            </div>
+            <div className="md:col-span-5">
+              <h3 className="text-brand-copper-light text-[10px] sm:text-xs tracking-[0.4em] uppercase font-bold mb-3 sm:mb-4">
+                {tspec("dimensions")}
+              </h3>
+              <ul className="text-white text-sm sm:text-base lg:text-lg font-light">
+                <li className="flex items-baseline justify-between border-b border-brand-border/25 py-2">
+                  <span className="text-white/80">{tspec("width")}</span>
+                  <span className="font-medium tracking-wide">
+                    {dims.width}{" "}
+                    <span className="text-brand-copper-light text-xs">
+                      {tspec("mm")}
+                    </span>
+                  </span>
+                </li>
+                <li className="flex items-baseline justify-between border-b border-brand-border/25 py-2">
+                  <span className="text-white/80">{tspec("depth")}</span>
+                  <span className="font-medium tracking-wide">
+                    {dims.depth}{" "}
+                    <span className="text-brand-copper-light text-xs">
+                      {tspec("mm")}
+                    </span>
+                  </span>
+                </li>
+                <li className="flex items-baseline justify-between py-2">
+                  <span className="text-white/80">{tspec("height")}</span>
+                  <span className="font-medium tracking-wide">
+                    {dims.height}{" "}
+                    <span className="text-brand-copper-light text-xs">
+                      {tspec("mm")}
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
 
         {/* THUMBNAIL ROW — MINIMALISMUS / MASIV / DETAIL / KVALITA */}
         <div className="mt-8 lg:mt-14 grid grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
@@ -277,5 +328,113 @@ export default function ProductPosterVariantF({ product }: Props) {
         </div>
       </div>
     </PosterPlate>
+  );
+}
+
+/**
+ * Minimal cabinet-projection wireframe of the piece, drawn from the actual
+ * width/depth/height (mm). Lines are copper to match the poster aesthetic.
+ * Sized via a fixed viewBox so it scales cleanly at every breakpoint.
+ */
+function DimensionSketch({ w, d, h }: { w: number; d: number; h: number }) {
+  // Scale real mm into SVG units so the largest edge fits comfortably.
+  const max = Math.max(w, d, h);
+  const s = 130 / max;
+  const W = w * s;
+  const H = h * s;
+  const D = d * s * 0.6; // foreshorten depth for a cabinet projection
+  const ox = 60; // origin x (front-bottom-left of the box)
+  const oy = 175; // origin y (front-bottom-left of the box)
+
+  // Front-face corners
+  const fbl = { x: ox, y: oy };
+  const fbr = { x: ox + W, y: oy };
+  const ftl = { x: ox, y: oy - H };
+  const ftr = { x: ox + W, y: oy - H };
+  // Back-face corners (offset up-right at ~30° via D)
+  const bbr = { x: fbr.x + D * 0.95, y: fbr.y - D * 0.55 };
+  const btr = { x: ftr.x + D * 0.95, y: ftr.y - D * 0.55 };
+  const btl = { x: ftl.x + D * 0.95, y: ftl.y - D * 0.55 };
+  // Inner shelf line on front face (~55% up from bottom)
+  const shelfY = oy - H * 0.42;
+
+  return (
+    <svg
+      viewBox="0 0 320 200"
+      className="w-full max-w-[420px] h-auto text-brand-copper-light"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Front face */}
+      <rect
+        x={fbl.x}
+        y={ftl.y}
+        width={W}
+        height={H}
+        strokeWidth={1.4}
+      />
+      {/* Depth edges */}
+      <line x1={ftl.x} y1={ftl.y} x2={btl.x} y2={btl.y} strokeWidth={1.2} />
+      <line x1={ftr.x} y1={ftr.y} x2={btr.x} y2={btr.y} strokeWidth={1.2} />
+      <line x1={fbr.x} y1={fbr.y} x2={bbr.x} y2={bbr.y} strokeWidth={1.2} />
+      {/* Back top + back right (visible ridges) */}
+      <line x1={btl.x} y1={btl.y} x2={btr.x} y2={btr.y} strokeWidth={1.2} />
+      <line x1={btr.x} y1={btr.y} x2={bbr.x} y2={bbr.y} strokeWidth={1.2} />
+      {/* Inner shelf (front + back) */}
+      <line x1={fbl.x} y1={shelfY} x2={fbr.x} y2={shelfY} strokeWidth={1} opacity={0.9} />
+      <line
+        x1={fbr.x}
+        y1={shelfY}
+        x2={fbr.x + D * 0.95}
+        y2={shelfY - D * 0.55}
+        strokeWidth={1}
+        opacity={0.55}
+        strokeDasharray="2 3"
+      />
+
+      {/* Dimension lines + labels */}
+      <g
+        stroke="currentColor"
+        strokeWidth={0.9}
+        opacity={0.85}
+      >
+        {/* width — below front bottom */}
+        <line x1={fbl.x} y1={oy + 14} x2={fbr.x} y2={oy + 14} />
+        <line x1={fbl.x} y1={oy + 10} x2={fbl.x} y2={oy + 18} />
+        <line x1={fbr.x} y1={oy + 10} x2={fbr.x} y2={oy + 18} />
+        {/* height — to the right of front face */}
+        <line x1={fbr.x + 14} y1={ftr.y} x2={fbr.x + 14} y2={fbr.y} />
+        <line x1={fbr.x + 10} y1={ftr.y} x2={fbr.x + 18} y2={ftr.y} />
+        <line x1={fbr.x + 10} y1={fbr.y} x2={fbr.x + 18} y2={fbr.y} />
+        {/* depth — angled, top-back */}
+        <line x1={ftl.x - 4} y1={ftl.y - 8} x2={btl.x - 4} y2={btl.y - 8} />
+        <line x1={ftl.x - 7} y1={ftl.y - 5} x2={ftl.x - 1} y2={ftl.y - 11} />
+        <line x1={btl.x - 7} y1={btl.y - 5} x2={btl.x - 1} y2={btl.y - 11} />
+      </g>
+
+      <g
+        fill="currentColor"
+        stroke="none"
+        fontSize={11}
+        fontFamily="ui-sans-serif, system-ui, sans-serif"
+        fontWeight={500}
+      >
+        <text x={(fbl.x + fbr.x) / 2} y={oy + 28} textAnchor="middle">
+          {w}
+        </text>
+        <text x={fbr.x + 22} y={(ftr.y + fbr.y) / 2 + 4}>
+          {h}
+        </text>
+        <text
+          x={(ftl.x + btl.x) / 2 - 6}
+          y={(ftl.y + btl.y) / 2 - 8}
+          textAnchor="end"
+        >
+          {d}
+        </text>
+      </g>
+    </svg>
   );
 }
