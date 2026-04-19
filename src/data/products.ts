@@ -21,11 +21,16 @@ export interface Product {
   heroImage: string | null;
   /** When set with heroImage, layout uses this ratio (no hard crop). */
   heroIntrinsicSize?: ImageSize | null;
+  /** Clean product photo (no baked-in text). Used by the poster card. */
+  cleanImage?: string | null;
+  cleanImageIntrinsicSize?: ImageSize | null;
   dimensionImage: string | null;
   dimensionIntrinsicSize?: ImageSize | null;
   price: number | null;
   dimensions: ProductDimensions | null;
   features: ProductFeature[];
+  /** Optional product-specific tagline; falls back to a brand line if absent. */
+  tagline?: string | null;
 }
 
 export const products: Product[] = [
@@ -35,6 +40,8 @@ export const products: Product[] = [
     category: "storage",
     heroImage: "/images/products/nightstand-hero.png",
     heroIntrinsicSize: { w: 1024, h: 571 },
+    cleanImage: "/images/products/nightstand-clean.jpg",
+    cleanImageIntrinsicSize: { w: 1024, h: 969 },
     dimensionImage: "/images/products/nightstand-dimensions.png",
     dimensionIntrinsicSize: { w: 682, h: 1024 },
     price: 8790,

@@ -63,7 +63,17 @@
     "customNote": "Every product can be customized. Contact us for bespoke dimensions and finishes.",
     "seeAll": "See All Products",
     "comingSoon": "Photo coming soon",
-    "priceFrom": "from"
+    "priceFrom": "from",
+    "poster": {
+      "tagline": "Wood and steel. Craftsmanship that outlives you.",
+      "headlineSuffix": "BUILT TO OUTLAST YOU",
+      "ctaPrimary": "REQUEST"
+    }
+  },
+  "valuePropsStrip": {
+    "longLife": "Long life",
+    "handcraft": "Handcraft",
+    "personalization": "Customizable"
   },
   "features": {
     "durable": "Durable",
@@ -130,27 +140,27 @@
   },
   "productItems": {
     "nightstand": {
-      "name": "Nightstand NOCI",
+      "name": "Nightstand",
       "description": "Minimalist nightstand combining black steel with a solid oak shelf. The piece that outlasts you."
     },
     "coffeeTable": {
-      "name": "Coffee Table STOL",
+      "name": "Coffee Table",
       "description": "Low-profile coffee table with a massive oak top and clean steel legs."
     },
     "shelf": {
-      "name": "Wall Shelf POLICE",
+      "name": "Wall Shelf",
       "description": "Floating wall shelf with steel brackets and oiled oak wood."
     },
     "desk": {
-      "name": "Desk PRACOVIŠTĚ",
+      "name": "Desk",
       "description": "Spacious work desk with built-in cable management and solid wood top."
     },
     "bench": {
-      "name": "Bench LAVICE",
+      "name": "Bench",
       "description": "Entryway bench with steel frame and a warm oak seat."
     },
     "tvStand": {
-      "name": "TV Stand MÉDIA",
+      "name": "TV Stand",
       "description": "Low media console with open shelving and hidden cable routing."
     }
   },
