@@ -5,6 +5,76 @@ import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import { products, filterCategories, type ProductCategory } from "@/data/products";
 import ProductPosterCard from "@/components/ProductPosterCard";
+import ProductPosterVariantB from "@/components/variants/ProductPosterVariantB";
+import ProductPosterVariantC from "@/components/variants/ProductPosterVariantC";
+import ProductPosterVariantD from "@/components/variants/ProductPosterVariantD";
+import ProductPosterVariantE from "@/components/variants/ProductPosterVariantE";
+
+const VARIANT_OPTIONS: Array<{
+  letter: string;
+  title: string;
+  blurb: string;
+}> = [
+  {
+    letter: "A",
+    title: "Side-by-side classic",
+    blurb:
+      "Text left, photo right, copper bullets and the value-prop strip with POPTAT.",
+  },
+  {
+    letter: "B",
+    title: "Poster verbatim",
+    blurb:
+      "Vertical centered. Most literal port of Tomáš's posters: stacked headline, big photo, dot-separated bullets, single POPTAT.",
+  },
+  {
+    letter: "C",
+    title: "Detail collage",
+    blurb:
+      "Main shot + four cropped close-ups in a 2×2 grid. Lookbook / magazine feel.",
+  },
+  {
+    letter: "D",
+    title: "Editorial split",
+    blurb:
+      "Photo dominates the right two-thirds. Vertical KROKAVA spine on the left, numbered features, single big POPTAT.",
+  },
+  {
+    letter: "E",
+    title: "Forge spec sheet",
+    blurb:
+      "Blueprint-style: monospaced meta, copper hairlines, photo flanked by spec columns, abstract dimensions ticks.",
+  },
+];
+
+function VariantHeader({
+  letter,
+  title,
+  blurb,
+}: {
+  letter: string;
+  title: string;
+  blurb: string;
+}) {
+  return (
+    <div className="flex items-start gap-5 sm:gap-7 mb-6 lg:mb-8 px-1">
+      <div className="shrink-0 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center border-2 border-brand-copper text-brand-copper font-black text-2xl sm:text-3xl tabular-nums">
+        {letter}
+      </div>
+      <div className="min-w-0 pt-1">
+        <p className="text-brand-copper text-[10px] sm:text-xs tracking-[0.4em] uppercase font-bold">
+          Varianta {letter}
+        </p>
+        <h3 className="mt-1 text-xl sm:text-2xl font-extralight text-white tracking-tight">
+          {title}
+        </h3>
+        <p className="mt-2 text-sm sm:text-base text-brand-muted leading-relaxed font-light max-w-3xl">
+          {blurb}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function ProductsPage() {
   const t = useTranslations("products");
@@ -63,18 +133,83 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* FEATURED — poster cards (one per real product) */}
-      <section className="py-16 lg:py-24 bg-brand-darker">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-24">
-          {featured.map((product, i) => (
-            <ProductPosterCard
-              key={product.id}
-              product={product}
-              index={i + 1}
-              variant="full"
-              priority={i === 0}
-            />
-          ))}
+      {/* FEATURED — five variants of the same product for review */}
+      <section className="py-12 lg:py-16 bg-brand-darker">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Comparison banner */}
+          <div className="mb-12 lg:mb-16 border border-brand-copper/40 bg-brand-dark/60 backdrop-blur-sm p-6 sm:p-8 flex flex-col sm:flex-row gap-5 sm:items-center sm:justify-between">
+            <div>
+              <p className="text-brand-copper text-[10px] sm:text-xs tracking-[0.4em] uppercase font-bold">
+                Návrhy &mdash; vyber variantu
+              </p>
+              <h2 className="mt-2 text-xl sm:text-2xl font-extralight text-white tracking-tight">
+                Pět provedení stejného produktu
+              </h2>
+              <p className="mt-2 text-brand-muted text-sm sm:text-base font-light leading-relaxed max-w-3xl">
+                Stejný kus, pět různých rozložení. Posuňte si stránku, porovnejte
+                a řekněte písmeno &mdash; tu vybereme jako šablonu pro celý
+                katalog. Ostatní pak smažeme.
+              </p>
+            </div>
+          </div>
+
+          {featured.map((product, i) => {
+            const isFirst = i === 0;
+            return (
+              <div key={product.id} className="space-y-16 lg:space-y-24">
+                {/* VARIANT A — current */}
+                <div>
+                  <VariantHeader
+                    letter={VARIANT_OPTIONS[0].letter}
+                    title={VARIANT_OPTIONS[0].title}
+                    blurb={VARIANT_OPTIONS[0].blurb}
+                  />
+                  <ProductPosterCard
+                    product={product}
+                    index={i + 1}
+                    variant="full"
+                    priority={isFirst}
+                  />
+                </div>
+
+                <div>
+                  <VariantHeader
+                    letter={VARIANT_OPTIONS[1].letter}
+                    title={VARIANT_OPTIONS[1].title}
+                    blurb={VARIANT_OPTIONS[1].blurb}
+                  />
+                  <ProductPosterVariantB product={product} />
+                </div>
+
+                <div>
+                  <VariantHeader
+                    letter={VARIANT_OPTIONS[2].letter}
+                    title={VARIANT_OPTIONS[2].title}
+                    blurb={VARIANT_OPTIONS[2].blurb}
+                  />
+                  <ProductPosterVariantC product={product} />
+                </div>
+
+                <div>
+                  <VariantHeader
+                    letter={VARIANT_OPTIONS[3].letter}
+                    title={VARIANT_OPTIONS[3].title}
+                    blurb={VARIANT_OPTIONS[3].blurb}
+                  />
+                  <ProductPosterVariantD product={product} />
+                </div>
+
+                <div>
+                  <VariantHeader
+                    letter={VARIANT_OPTIONS[4].letter}
+                    title={VARIANT_OPTIONS[4].title}
+                    blurb={VARIANT_OPTIONS[4].blurb}
+                  />
+                  <ProductPosterVariantE product={product} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
