@@ -24,7 +24,7 @@ export default function PosterPlate({
 
   return (
     <article
-      className={`relative isolate overflow-hidden bg-brand-darker border border-brand-border/30 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] ${className}`}
+      className={`relative isolate overflow-hidden rounded-2xl sm:rounded-3xl bg-brand-darker border border-brand-border/30 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.9)] ${className}`}
     >
       <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden>
         <div className={`absolute inset-0 ${glow}`} />

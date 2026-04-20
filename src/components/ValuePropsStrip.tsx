@@ -73,7 +73,7 @@ export default function ValuePropsStrip({ ctaHref = "/contact", className = "" }
 
         <Link
           href={ctaHref}
-          className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-brand-flame to-brand-ember text-white font-black text-sm tracking-[0.3em] uppercase shadow-[0_0_30px_rgba(255,140,66,0.25)] hover:shadow-[0_0_50px_rgba(255,140,66,0.55)] hover:from-brand-ember hover:to-brand-flame transition-all duration-300 w-full lg:w-auto"
+          className="group inline-flex items-center justify-center gap-3 rounded-lg sm:rounded-xl px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-brand-flame to-brand-ember text-white font-black text-sm tracking-[0.3em] uppercase shadow-[0_0_30px_rgba(255,140,66,0.25)] hover:shadow-[0_0_50px_rgba(255,140,66,0.55)] hover:from-brand-ember hover:to-brand-flame transition-all duration-300 w-full lg:w-auto"
         >
           {tp("ctaPrimary")}
           <svg

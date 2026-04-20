@@ -29,30 +29,30 @@ export default function ProductsPage() {
               <div className="flex items-center gap-3 mb-3">
                 <div className="h-px w-10 bg-brand-copper" />
                 <span className="text-brand-copper text-[10px] sm:text-xs tracking-[0.4em] uppercase font-bold">
-                  {tv("collectionLabel")}
-                </span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-tight leading-[0.95]">
-                {t("pageTitle")}
-              </h1>
-              <p className="mt-3 text-base sm:text-lg text-brand-muted leading-relaxed font-light">
-                {t("heroText")}
-              </p>
+                {tv("collectionLabel")}
+              </span>
             </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-tight leading-[0.95]">
+              {t("pageTitle")}
+            </h1>
+              <p className="mt-3 text-base sm:text-lg text-brand-muted leading-relaxed font-light">
+              {t("heroText")}
+            </p>
+          </div>
             <div className="flex flex-wrap gap-2 lg:justify-end">
-              {filterCategories.map((f) => (
-                <button
-                  key={f.key}
-                  onClick={() => setFilter(f.key)}
-                  className={`px-4 py-2 text-[11px] tracking-[0.2em] uppercase font-semibold border transition-all duration-200 ${
-                    filter === f.key
-                      ? "bg-brand-copper border-brand-copper text-white"
-                      : "bg-transparent border-brand-border/50 text-brand-muted hover:border-brand-copper/50 hover:text-brand-text"
-                  }`}
-                >
-                  {t(f.tKey)}
-                </button>
-              ))}
+            {filterCategories.map((f) => (
+              <button
+                key={f.key}
+                onClick={() => setFilter(f.key)}
+                  className={`rounded-md sm:rounded-lg px-4 py-2 text-[11px] tracking-[0.2em] uppercase font-semibold border transition-all duration-200 ${
+                  filter === f.key
+                    ? "bg-brand-copper border-brand-copper text-white"
+                    : "bg-transparent border-brand-border/50 text-brand-muted hover:border-brand-copper/50 hover:text-brand-text"
+                }`}
+              >
+                {t(f.tKey)}
+              </button>
+            ))}
             </div>
           </div>
         </div>

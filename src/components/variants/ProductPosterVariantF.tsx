@@ -195,7 +195,7 @@ export default function ProductPosterVariantF({ product }: Props) {
               )}
 
               {/* "Price slot" — keeping balance, no number */}
-              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 text-right bg-brand-darker/75 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 border-l-2 border-brand-copper">
+              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-10 text-right rounded-lg sm:rounded-xl bg-brand-darker/80 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 border border-brand-copper/50">
                 <p className="text-white text-xs sm:text-sm lg:text-base font-light tracking-wide">
                   Cena
                   <span className="text-brand-copper-light"> &mdash;</span> na
@@ -322,7 +322,7 @@ export default function ProductPosterVariantF({ product }: Props) {
         <div className="mt-7 lg:mt-9 flex justify-center">
           <Link
             href="/contact"
-            className="group inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-12 sm:py-5 bg-gradient-to-r from-brand-flame to-brand-ember text-white font-black text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.35em] uppercase shadow-[0_0_40px_rgba(255,140,66,0.35)] hover:shadow-[0_0_60px_rgba(255,140,66,0.6)] transition-all duration-300 w-full sm:w-auto max-w-md"
+            className="group inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:px-12 sm:py-5 rounded-lg sm:rounded-xl bg-gradient-to-r from-brand-flame to-brand-ember text-white font-black text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.35em] uppercase shadow-[0_0_40px_rgba(255,140,66,0.35)] hover:shadow-[0_0_60px_rgba(255,140,66,0.6)] transition-all duration-300 w-full sm:w-auto max-w-md"
           >
             {tpp("ctaPrimary")}
             <svg
