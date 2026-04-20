@@ -145,7 +145,7 @@ export default function ProductPosterCard({
           {isCompact && (
             <Link
               href={resolvedCtaHref}
-              className="mt-7 inline-flex items-center gap-3 rounded-lg sm:rounded-xl px-8 py-4 bg-gradient-to-r from-brand-flame to-brand-ember text-white font-black text-xs tracking-[0.3em] uppercase shadow-[0_0_30px_rgba(255,140,66,0.25)] hover:shadow-[0_0_50px_rgba(255,140,66,0.5)] transition-all duration-300 self-start"
+              className="mt-7 inline-flex items-center gap-3 rounded-xl sm:rounded-2xl px-8 py-4 bg-gradient-to-r from-brand-flame to-brand-ember text-white font-black text-xs tracking-[0.3em] uppercase shadow-[0_0_30px_rgba(255,140,66,0.25)] hover:shadow-[0_0_50px_rgba(255,140,66,0.5)] transition-all duration-300 self-start"
             >
               {t("products.details")}
               <svg
