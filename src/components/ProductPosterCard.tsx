@@ -177,7 +177,7 @@ export default function ProductPosterCard({
               <Link
                 href={resolvedCtaHref}
                 aria-label={pi(`${product.id}.name`)}
-                className="relative block group outline-none focus-visible:ring-2 focus-visible:ring-brand-copper-light/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-darker"
+                className="relative block group rounded-xl sm:rounded-2xl overflow-hidden ring-1 ring-brand-copper/20 outline-none focus-visible:ring-2 focus-visible:ring-brand-copper-light/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-darker"
               >
                 <Image
                   src={photo}
@@ -194,23 +194,12 @@ export default function ProductPosterCard({
                 />
               </Link>
             ) : (
-              <div className="relative aspect-[4/3] flex items-center justify-center bg-brand-card/40 border border-brand-border/30">
+              <div className="relative aspect-[4/3] flex items-center justify-center bg-brand-card/40 border border-brand-border/30 rounded-xl sm:rounded-2xl">
                 <span className="text-brand-muted text-xs tracking-[0.3em] uppercase">
                   {tp("comingSoon")}
                 </span>
               </div>
             )}
-
-            {/* copper corner frame */}
-            <div
-              className="pointer-events-none absolute inset-0"
-              aria-hidden
-            >
-              <div className="absolute top-0 left-0 w-12 h-[2px] bg-brand-copper" />
-              <div className="absolute top-0 left-0 w-[2px] h-12 bg-brand-copper" />
-              <div className="absolute bottom-0 right-0 w-12 h-[2px] bg-brand-copper" />
-              <div className="absolute bottom-0 right-0 w-[2px] h-12 bg-brand-copper" />
-            </div>
           </div>
         </div>
       </div>
