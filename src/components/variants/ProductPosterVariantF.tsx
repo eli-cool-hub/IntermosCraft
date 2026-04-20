@@ -182,14 +182,16 @@ export default function ProductPosterVariantF({ product }: Props) {
                 aria-hidden
               />
               {photo && (
-                <Image
-                  src={photo}
-                  alt={pi(`${product.id}.name`)}
-                  width={photoSize.w}
-                  height={photoSize.h}
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="relative h-auto w-full object-contain max-h-[min(70svh,720px)] drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
-                />
+                <div className="relative overflow-hidden rounded-xl sm:rounded-2xl ring-1 ring-brand-copper/20">
+                  <Image
+                    src={photo}
+                    alt={pi(`${product.id}.name`)}
+                    width={photoSize.w}
+                    height={photoSize.h}
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="h-auto w-full object-contain max-h-[min(70svh,720px)] drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
+                  />
+                </div>
               )}
 
               {/* "Price slot" — keeping balance, no number */}
