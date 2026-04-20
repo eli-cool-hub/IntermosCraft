@@ -208,17 +208,19 @@ export default function ProductPosterVariantF({ product }: Props) {
 
         {/* DIMENSIONS — technical sketch + spec list */}
         {dims && (
-          <div className="mt-8 lg:mt-14 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-black/35 border border-brand-border/30 px-5 sm:px-7 lg:px-9 py-6 sm:py-7 lg:py-8">
+          <div className="mt-8 lg:mt-14 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center rounded-xl sm:rounded-2xl bg-black/35 border border-brand-border/30 px-5 sm:px-7 lg:px-9 py-6 sm:py-7 lg:py-8">
             <div className="md:col-span-7 flex justify-center">
               {product.dimensionImage && (
-                <Image
-                  src={product.dimensionImage}
-                  alt={`${pi(`${product.id}.name`)} – ${tspec("dimensions")}`}
-                  width={product.dimensionIntrinsicSize?.w ?? 498}
-                  height={product.dimensionIntrinsicSize?.h ?? 342}
-                  sizes="(max-width: 768px) 90vw, 40vw"
-                  className="w-full max-w-[480px] h-auto shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
-                />
+                <div className="w-full max-w-[480px] overflow-hidden rounded-lg sm:rounded-xl ring-1 ring-brand-copper/15 shadow-[0_10px_30px_rgba(0,0,0,0.55)]">
+                  <Image
+                    src={product.dimensionImage}
+                    alt={`${pi(`${product.id}.name`)} – ${tspec("dimensions")}`}
+                    width={product.dimensionIntrinsicSize?.w ?? 498}
+                    height={product.dimensionIntrinsicSize?.h ?? 342}
+                    sizes="(max-width: 768px) 90vw, 40vw"
+                    className="w-full h-auto"
+                  />
+                </div>
               )}
             </div>
             <div className="md:col-span-5">
