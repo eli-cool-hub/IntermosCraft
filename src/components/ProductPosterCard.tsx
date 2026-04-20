@@ -173,8 +173,12 @@ export default function ProductPosterCard({
               className="absolute -inset-x-6 -bottom-2 h-10 rounded-[100%] bg-black/70 blur-2xl pointer-events-none"
               aria-hidden
             />
-            <div className="relative">
-              {photo ? (
+            {photo ? (
+              <Link
+                href={resolvedCtaHref}
+                aria-label={pi(`${product.id}.name`)}
+                className="relative block group outline-none focus-visible:ring-2 focus-visible:ring-brand-copper-light/70 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-darker"
+              >
                 <Image
                   src={photo}
                   alt={pi(`${product.id}.name`)}
@@ -186,16 +190,16 @@ export default function ProductPosterCard({
                       ? "(max-width: 1024px) 100vw, 50vw"
                       : "(max-width: 1024px) 100vw, 58vw"
                   }
-                  className="h-auto w-full max-w-full object-contain max-h-[min(70svh,720px)] drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
+                  className="h-auto w-full max-w-full object-contain max-h-[min(70svh,720px)] drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-out group-hover:scale-[1.015]"
                 />
-              ) : (
-                <div className="aspect-[4/3] flex items-center justify-center bg-brand-card/40 border border-brand-border/30">
-                  <span className="text-brand-muted text-xs tracking-[0.3em] uppercase">
-                    {tp("comingSoon")}
-                  </span>
-                </div>
-              )}
-            </div>
+              </Link>
+            ) : (
+              <div className="relative aspect-[4/3] flex items-center justify-center bg-brand-card/40 border border-brand-border/30">
+                <span className="text-brand-muted text-xs tracking-[0.3em] uppercase">
+                  {tp("comingSoon")}
+                </span>
+              </div>
+            )}
 
             {/* copper corner frame */}
             <div
