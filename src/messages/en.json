@@ -70,6 +70,9 @@
     "seeAll": "See All Products",
     "comingSoon": "Photo coming soon",
     "priceFrom": "from",
+    "configuratorEyebrow": "Interactive configurator",
+    "configuratorComing": "Coming soon",
+    "configuratorCta": "Go to custom orders",
     "poster": {
       "tagline": "Wood and steel. Craftsmanship that outlives you.",
       "headlineSuffix": "BUILT TO OUTLAST YOU",
@@ -90,7 +93,8 @@
     "custom": {
       "label": "03",
       "name": "Custom orders",
-      "lead": "Original solutions to your exact needs. No compromises."
+      "lead": "Original solutions to your exact needs. No compromises.",
+      "tagline": "Your vision. Our craft."
     }
   },
   "productCategories": {

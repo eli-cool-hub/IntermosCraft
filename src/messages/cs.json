@@ -70,6 +70,9 @@
     "seeAll": "Zobrazit všechny produkty",
     "comingSoon": "Foto již brzy",
     "priceFrom": "od",
+    "configuratorEyebrow": "Interaktivní konfigurátor",
+    "configuratorComing": "Připravujeme",
+    "configuratorCta": "Přejít k zakázkám",
     "poster": {
       "tagline": "Dřevo a ocel. Řemeslo, které vás přežije.",
       "headlineSuffix": "KTERÝ VÁS PŘEŽIJE",
@@ -90,7 +93,8 @@
     "custom": {
       "label": "03",
       "name": "Zakázky",
-      "lead": "Originální řešení podle vašich potřeb. Bez kompromisů."
+      "lead": "Originální řešení podle vašich potřeb. Bez kompromisů.",
+      "tagline": "Vaše vize. Naše řemeslo."
     }
   },
   "productCategories": {

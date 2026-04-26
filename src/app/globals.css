@@ -71,4 +71,23 @@ body {
       ),
       linear-gradient(to bottom, #0a0604 0%, #120f0c 40%, #1a120d 100%);
   }
+
+  .animate-config-breathe {
+    animation: config-breathe 4.2s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .group:hover .animate-config-breathe {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes config-breathe {
+  0%, 100% {
+    opacity: 0.78;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
 }
