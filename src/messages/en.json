@@ -53,11 +53,17 @@
   },
   "products": {
     "pageTitle": "Our Products",
-    "heroText": "Each piece tells a story of wood and steel",
-    "filterAll": "All",
-    "filterTables": "Tables",
-    "filterStorage": "Storage",
-    "filterSeating": "Seating",
+    "heroText": "Three worlds. One workshop. Every piece tells a story of wood and steel.",
+    "hubEyebrow": "What we make",
+    "hubTitle": "From interior to fire",
+    "hubLead": "Seven lines, three distinct worlds — all designed, forged and finished in our workshop.",
+    "exploreCategory": "Explore",
+    "requestPiece": "Request",
+    "modelsCount": "{count, plural, =0 {Coming soon} =1 {1 model} other {# models}}",
+    "featuredEyebrow": "In production",
+    "featuredTitle": "Made and ready",
+    "comingSoonEyebrow": "Coming up",
+    "comingSoonTitle": "Next out of the workshop",
     "requestQuote": "Request Quote",
     "details": "View Details",
     "customNote": "Every product can be customized. Contact us for bespoke dimensions and finishes.",
@@ -68,6 +74,60 @@
       "tagline": "Wood and steel. Craftsmanship that outlives you.",
       "headlineSuffix": "BUILT TO OUTLAST YOU",
       "ctaPrimary": "REQUEST"
+    }
+  },
+  "productGroups": {
+    "furniture": {
+      "label": "01",
+      "name": "Furniture & accessories",
+      "lead": "Industrial pieces for everyday life at home."
+    },
+    "exterior": {
+      "label": "02",
+      "name": "Exterior",
+      "lead": "Steel structures that transform the outdoor space."
+    },
+    "custom": {
+      "label": "03",
+      "name": "Custom orders",
+      "lead": "Original solutions to your exact needs. No compromises."
+    }
+  },
+  "productCategories": {
+    "industrialFurniture": {
+      "name": "Industrial furniture",
+      "lead": "Tables, side tables, shelves and other pieces that join solid wood with rugged steel. Designed for daily use — functional, stable and timeless.",
+      "tagline": "Craft with weight, made to last."
+    },
+    "industrialAccessories": {
+      "name": "Industrial accessories",
+      "lead": "Practical and design-led details that complete the interior and exterior. Simple shapes, honest construction, an obsession with detail.",
+      "tagline": "Details that finish the space."
+    },
+    "outdoorFire": {
+      "name": "Fire pits, hearths & grills",
+      "lead": "The centre of every outdoor space. Steel constructions built to endure daily use and the harshest conditions.",
+      "tagline": "Fire that lasts."
+    },
+    "benches": {
+      "name": "Benches",
+      "lead": "Massive benches for indoor and outdoor. Stable construction, comfortable seating, and a design that holds its ground over time.",
+      "tagline": "Simplicity that works."
+    },
+    "pergolasFences": {
+      "name": "Pergolas & fences",
+      "lead": "Structures that give a space order and character. Designed with focus on function, strength and a long life.",
+      "tagline": "Function. Strength. Clean design."
+    },
+    "binBoxes": {
+      "name": "Bin enclosures",
+      "lead": "A practical solution for everyday use. They hide what shouldn't be seen — and still belong to the space.",
+      "tagline": "Order without compromise."
+    },
+    "metalwork": {
+      "name": "Bespoke metalwork",
+      "lead": "Made to your needs from first sketch to final install. We work with steel, wood, and the combination of both. Every project is an original.",
+      "tagline": "Solutions without compromise."
     }
   },
   "valuePropsStrip": {

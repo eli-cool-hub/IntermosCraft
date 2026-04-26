@@ -53,11 +53,17 @@
   },
   "products": {
     "pageTitle": "Naše produkty",
-    "heroText": "Každý kus vypráví příběh dřeva a oceli",
-    "filterAll": "Vše",
-    "filterTables": "Stoly",
-    "filterStorage": "Úložné prostory",
-    "filterSeating": "Sezení",
+    "heroText": "Tři světy. Jedna dílna. Každý kus vypráví příběh dřeva a oceli.",
+    "hubEyebrow": "Co vyrábíme",
+    "hubTitle": "Od interiéru po oheň",
+    "hubLead": "Sedm linií, tři odlišné světy — vše navržené, kované a opracované u nás.",
+    "exploreCategory": "Prozkoumat",
+    "requestPiece": "Poptat",
+    "modelsCount": "{count, plural, =0 {Připravujeme} =1 {1 model} few {# modely} other {# modelů}}",
+    "featuredEyebrow": "Hotové kusy",
+    "featuredTitle": "Vyrobeno a připraveno",
+    "comingSoonEyebrow": "Připravujeme",
+    "comingSoonTitle": "Brzy v dílně",
     "requestQuote": "Poptávka",
     "details": "Detail",
     "customNote": "Každý produkt lze přizpůsobit. Kontaktujte nás pro zakázkové rozměry a povrchové úpravy.",
@@ -68,6 +74,60 @@
       "tagline": "Dřevo a ocel. Řemeslo, které vás přežije.",
       "headlineSuffix": "KTERÝ VÁS PŘEŽIJE",
       "ctaPrimary": "POPTAT"
+    }
+  },
+  "productGroups": {
+    "furniture": {
+      "label": "01",
+      "name": "Nábytek a doplňky",
+      "lead": "Industriální kusy pro každodenní život doma."
+    },
+    "exterior": {
+      "label": "02",
+      "name": "Exteriér",
+      "lead": "Konstrukce z oceli, které proměňují venkovní prostor."
+    },
+    "custom": {
+      "label": "03",
+      "name": "Zakázky",
+      "lead": "Originální řešení podle vašich potřeb. Bez kompromisů."
+    }
+  },
+  "productCategories": {
+    "industrialFurniture": {
+      "name": "Industriální nábytek",
+      "lead": "Stoly, stolky, police a další kusy, které spojují masivní dřevo s pevnou ocelí. Navržené pro každodenní používání – funkční, stabilní a nadčasové.",
+      "tagline": "Řemeslo, které má váhu a vydrží."
+    },
+    "industrialAccessories": {
+      "name": "Industriální doplňky",
+      "lead": "Praktické a designové prvky, které doplňují interiér i exteriér. Jednoduché tvary, poctivé zpracování a důraz na detail.",
+      "tagline": "Detaily, které dotvářejí prostor."
+    },
+    "outdoorFire": {
+      "name": "Venkovní ohniště, krby a grily",
+      "lead": "Centrum každého venkovního prostoru. Odolné konstrukce z oceli, které zvládnou každodenní používání i náročné podmínky.",
+      "tagline": "Oheň, který vydrží."
+    },
+    "benches": {
+      "name": "Lavičky",
+      "lead": "Masivní lavičky pro interiér i exteriér. Stabilní konstrukce, pohodlné sezení a design, který obstojí v čase.",
+      "tagline": "Jednoduchost, která funguje."
+    },
+    "pergolasFences": {
+      "name": "Pergoly a ploty",
+      "lead": "Konstrukce, které dávají prostoru řád a charakter. Navržené s důrazem na funkčnost, pevnost a dlouhou životnost.",
+      "tagline": "Funkce. Pevnost. Čistý design."
+    },
+    "binBoxes": {
+      "name": "Boxy na popelnice",
+      "lead": "Praktické řešení pro každodenní použití. Schovají to, co nemá být vidět – a přitom zapadnou do prostoru.",
+      "tagline": "Pořádek bez kompromisů."
+    },
+    "metalwork": {
+      "name": "Zámečnická výroba",
+      "lead": "Výroba na míru podle vašich potřeb. Od prvního návrhu až po finální realizaci. Pracujeme s ocelí, dřevem i jejich kombinací. Každý projekt je originál.",
+      "tagline": "Řešení bez kompromisů."
     }
   },
   "valuePropsStrip": {

@@ -56,11 +56,18 @@ const VALUE_PROP_ICONS = {
   ),
   handcraft: (cls: string) => (
     <svg className={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path
-        d="M5 14l4-4 4 4-4 4-4-4zM13 6h4l3 3v4l-7-7z"
-        strokeWidth={1.4}
-        strokeLinejoin="round"
+      <rect
+        x="2.75"
+        y="6.25"
+        width="8.5"
+        height="3.5"
+        rx="1"
+        fill="none"
+        strokeWidth={1.5}
       />
+      <path d="M6.5 9v9.75" strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M11.75 19.25l8.25-8.25" strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M11 18.5l2.75-2.75" strokeWidth={1.5} strokeLinecap="round" />
     </svg>
   ),
   personalization: (cls: string) => (

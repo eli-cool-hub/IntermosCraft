@@ -1,4 +1,13 @@
-export type ProductCategory = "tables" | "storage" | "seating" | "outdoor";
+export type ProductGroup = "furniture" | "exterior" | "custom";
+
+export type ProductCategory =
+  | "industrialFurniture"
+  | "industrialAccessories"
+  | "outdoorFire"
+  | "benches"
+  | "pergolasFences"
+  | "binBoxes"
+  | "metalwork";
 
 export type ProductFeature = "durable" | "solidWood" | "steel" | "custom";
 
@@ -37,7 +46,7 @@ export const products: Product[] = [
   {
     id: "nightstand",
     modelName: "Krokava",
-    category: "storage",
+    category: "industrialFurniture",
     heroImage: "/images/products/nightstand-hero.png",
     heroIntrinsicSize: { w: 1024, h: 571 },
     cleanImage: "/images/products/nightstand-clean.jpg",
@@ -51,7 +60,7 @@ export const products: Product[] = [
   {
     id: "coffeeTable",
     modelName: "Stol",
-    category: "tables",
+    category: "industrialFurniture",
     heroImage: null,
     dimensionImage: null,
     price: null,
@@ -61,7 +70,7 @@ export const products: Product[] = [
   {
     id: "shelf",
     modelName: "Police",
-    category: "storage",
+    category: "industrialAccessories",
     heroImage: null,
     dimensionImage: null,
     price: null,
@@ -71,7 +80,7 @@ export const products: Product[] = [
   {
     id: "desk",
     modelName: "Pracoviště",
-    category: "tables",
+    category: "industrialFurniture",
     heroImage: null,
     dimensionImage: null,
     price: null,
@@ -81,7 +90,7 @@ export const products: Product[] = [
   {
     id: "bench",
     modelName: "Lavice",
-    category: "seating",
+    category: "benches",
     heroImage: null,
     dimensionImage: null,
     price: null,
@@ -91,7 +100,7 @@ export const products: Product[] = [
   {
     id: "tvStand",
     modelName: "Média",
-    category: "storage",
+    category: "industrialFurniture",
     heroImage: null,
     dimensionImage: null,
     price: null,
@@ -100,12 +109,58 @@ export const products: Product[] = [
   },
 ];
 
-export const filterCategories = [
-  { key: "all" as const, tKey: "filterAll" },
-  { key: "tables" as const, tKey: "filterTables" },
-  { key: "storage" as const, tKey: "filterStorage" },
-  { key: "seating" as const, tKey: "filterSeating" },
+export interface CategoryDef {
+  id: ProductCategory;
+  group: ProductGroup;
+  /** Optional override CTA target (e.g. metalwork → /custom directly). */
+  ctaHref?: string;
+}
+
+export interface GroupDef {
+  id: ProductGroup;
+  /** Subcategories shown in this group, in display order. */
+  categories: ProductCategory[];
+}
+
+/** Display order matches the owner's brief: 🪵 → 🔥 → ⚙️. */
+export const productGroups: GroupDef[] = [
+  {
+    id: "furniture",
+    categories: ["industrialFurniture", "industrialAccessories"],
+  },
+  {
+    id: "exterior",
+    categories: ["outdoorFire", "benches", "pergolasFences", "binBoxes"],
+  },
+  {
+    id: "custom",
+    categories: ["metalwork"],
+  },
 ];
+
+export const productCategories: CategoryDef[] = [
+  { id: "industrialFurniture", group: "furniture" },
+  { id: "industrialAccessories", group: "furniture" },
+  { id: "outdoorFire", group: "exterior" },
+  { id: "benches", group: "exterior" },
+  { id: "pergolasFences", group: "exterior" },
+  { id: "binBoxes", group: "exterior" },
+  { id: "metalwork", group: "custom", ctaHref: "/custom" },
+];
+
+/** Map for O(1) lookups when rendering. */
+export const productCategoryMap: Record<ProductCategory, CategoryDef> =
+  productCategories.reduce(
+    (acc, def) => {
+      acc[def.id] = def;
+      return acc;
+    },
+    {} as Record<ProductCategory, CategoryDef>,
+  );
+
+export function productsByCategory(category: ProductCategory): Product[] {
+  return products.filter((p) => p.category === category);
+}
 
 export function formatPrice(price: number): string {
   return price.toLocaleString("cs-CZ") + ",-\u00A0Kč";

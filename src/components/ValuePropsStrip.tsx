@@ -20,12 +20,18 @@ const icons = {
   ),
   handcraft: (
     <svg className={ICON_CLASS} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path
-        d="M3 14l4-4 6 6-4 4-6-6zM13 4l3-1 4 4-1 3-6-6z"
+      <rect
+        x="2.75"
+        y="6.25"
+        width="8.5"
+        height="3.5"
+        rx="1"
+        fill="none"
         strokeWidth={1.5}
-        strokeLinejoin="round"
       />
-      <path d="M9 10l5 5" strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M6.5 9v9.75" strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M11.75 19.25l8.25-8.25" strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M11 18.5l2.75-2.75" strokeWidth={1.5} strokeLinecap="round" />
     </svg>
   ),
   personalization: (

@@ -16,6 +16,7 @@
   --color-brand-ash: #2d1810;
 
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
 }
 
 html {
@@ -34,6 +35,10 @@ body {
 }
 
 @layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
   .text-gradient {
     background: linear-gradient(135deg, var(--color-brand-copper-light), var(--color-brand-copper));
     -webkit-background-clip: text;

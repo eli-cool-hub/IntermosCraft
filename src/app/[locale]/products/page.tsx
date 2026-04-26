@@ -1,136 +1,178 @@
-"use client";
-
+import { Fragment } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { useState } from "react";
-import { products, filterCategories, type ProductCategory } from "@/data/products";
-import ProductPosterVariantF from "@/components/variants/ProductPosterVariantF";
+import {
+  productGroups,
+  type ProductCategory,
+} from "@/data/products";
+
+/** Hub displays only "Furniture" and "Exterior" — Custom orders live on /custom. */
+const HUB_GROUPS = productGroups.filter((g) => g.id !== "custom");
+
+/** Roman chapter markers — restored from the owner's group hierarchy. */
+const ROMAN_NUMERALS = ["I", "II", "III", "IV"] as const;
+
+const CATEGORY_HERO_IMAGE: Record<ProductCategory, { src: string; alt: string }> = {
+  industrialFurniture: {
+    src: "/images/categories/cat-industrial-furniture.png",
+    alt: "Industriální nábytek — masivní dřevo a ocel v dílně",
+  },
+  industrialAccessories: {
+    src: "/images/categories/cat-industrial-accessories.png",
+    alt: "Industriální doplňky — masivní dub, detail",
+  },
+  outdoorFire: {
+    src: "/images/categories/cat-outdoor-fire.png",
+    alt: "Venkovní ohniště, krby a grily — oheň za soumraku",
+  },
+  benches: {
+    src: "/images/categories/cat-benches.png",
+    alt: "Lavičky — masivní dub a ocel ve volné krajině",
+  },
+  pergolasFences: {
+    src: "/images/categories/cat-pergolas-fences.png",
+    alt: "Pergoly a ploty — ocelová silueta proti západu slunce",
+  },
+  binBoxes: {
+    src: "/images/categories/cat-bin-boxes.png",
+    alt: "Boxy na popelnice — moderní design v betonovém prostoru",
+  },
+  /* metalwork hero — kept for future use, not rendered in current hub */
+  metalwork: {
+    src: "/images/categories/cat-industrial-furniture.png",
+    alt: "Zámečnická výroba",
+  },
+};
 
 export default function ProductsPage() {
   const t = useTranslations("products");
-  const pt = useTranslations("productItems");
-  const tv = useTranslations("variants");
-  const [filter, setFilter] = useState<ProductCategory | "all">("all");
-
-  const filtered =
-    filter === "all" ? products : products.filter((p) => p.category === filter);
-
-  const featured = filtered.filter((p) => p.cleanImage);
-  const upcoming = filtered.filter((p) => !p.cleanImage);
+  const tc = useTranslations("productCategories");
+  const tg = useTranslations("productGroups");
 
   return (
-    <>
-      {/* HERO + FILTERS — combined, compact */}
-      <section className="relative pt-14 lg:pt-20 pb-0 bg-brand-dark overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(232,93,4,0.08),transparent_70%)]" />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="h-px w-10 bg-brand-copper" />
-                <span className="text-brand-copper text-[10px] sm:text-xs tracking-[0.4em] uppercase font-bold">
-                {tv("collectionLabel")}
-              </span>
-            </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-tight leading-[0.95]">
-              {t("pageTitle")}
-            </h1>
-              <p className="mt-3 text-base sm:text-lg text-brand-muted leading-relaxed font-light">
-              {t("heroText")}
-            </p>
-          </div>
-            <div className="flex flex-wrap gap-2 lg:justify-end">
-            {filterCategories.map((f) => (
-              <button
-                key={f.key}
-                onClick={() => setFilter(f.key)}
-                  className={`rounded-md sm:rounded-lg px-4 py-2 text-[11px] tracking-[0.2em] uppercase font-semibold border transition-all duration-200 ${
-                  filter === f.key
-                    ? "bg-brand-copper border-brand-copper text-white"
-                    : "bg-transparent border-brand-border/50 text-brand-muted hover:border-brand-copper/50 hover:text-brand-text"
-                }`}
-              >
-                {t(f.tKey)}
-              </button>
-            ))}
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="relative bg-brand-darker overflow-hidden">
+      {/* Editorial mood — corner copper haze + faint grain, matches mockup */}
+      <div className="absolute inset-0 -z-0 pointer-events-none" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_15%_8%,rgba(181,114,44,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_92%_92%,rgba(232,93,4,0.10),transparent_70%)]" />
+        <div
+          className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.55) 1px, transparent 1px)",
+            backgroundSize: "3px 3px",
+          }}
+        />
+      </div>
 
-      {/* FEATURED — poster cards */}
-      <section className="pt-8 pb-12 lg:pt-12 lg:pb-20 bg-brand-darker">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 lg:space-y-20">
-          {featured.map((product) => (
-            <ProductPosterVariantF key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
-
-      {/* UPCOMING COLLECTION */}
-      {upcoming.length > 0 && (
-        <section className="py-14 lg:py-20 bg-brand-dark border-t border-brand-border/15">
-          <div className="max-w-5xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-brand-copper text-xs tracking-[0.4em] uppercase font-bold mb-3">
-                {tv("collectionLabel")} &mdash; 2026
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-extralight tracking-tight">
-                {t("comingSoon")}
-              </h2>
-            </div>
-
-            <ul className="divide-y divide-brand-border/15">
-              {upcoming.map((p, i) => (
-                <li key={p.id} id={p.id}>
-                  <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-8 py-7">
-                    <span className="text-brand-border/70 text-sm font-black tracking-widest w-10">
-                      {String(featured.length + i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="text-xl sm:text-2xl font-light text-white truncate">
-                        {pt(`${p.id}.name`)}
-                      </h3>
-                      <p className="text-brand-muted/80 text-sm mt-1 italic truncate">
-                        {p.modelName} &middot;{" "}
-                        {t(
-                          `filter${p.category.charAt(0).toUpperCase() + p.category.slice(1)}` as "filterTables"
-                        )}
-                      </p>
-                    </div>
-                    <span className="hidden sm:inline-block text-[10px] tracking-[0.3em] uppercase text-brand-subtle">
-                      {t("comingSoon")}
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
-      {/* Custom CTA */}
-      <section className="py-14 lg:py-20 bg-brand-darker border-t border-brand-border/15">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-brand-muted text-base sm:text-lg mb-6 leading-relaxed font-light">
-            {t("customNote")}
-          </p>
-          <Link
-            href="/custom"
-            className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-brand-copper text-brand-copper font-bold text-xs tracking-[0.2em] uppercase hover:bg-brand-copper hover:text-white transition-colors"
+      <div className="relative max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-14 pt-12 lg:pt-20 pb-20 lg:pb-32">
+        {/* HERO — single huge serif headline (mockup top, no brand eyebrow) */}
+        <header className="mb-12 lg:mb-20">
+          <h1
+            className="font-serif font-light italic text-brand-copper-light leading-[0.9] tracking-tight text-[3.25rem] sm:text-7xl lg:text-[7.5rem] xl:text-[9rem]"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            {t("requestQuote")}
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
+            {t("pageTitle")}
+          </h1>
+        </header>
+
+        {/* EDITORIAL ROWS — alternating image/text, grouped under chapter dividers */}
+        <div className="flex flex-col gap-12 sm:gap-16 lg:gap-20">
+          {HUB_GROUPS.map((group, gi) => {
+            const startIndex = HUB_GROUPS.slice(0, gi).reduce(
+              (n, g) => n + g.categories.length,
+              0,
+            );
+
+            return (
+              <Fragment key={group.id}>
+                {/* CHAPTER DIVIDER — Roman numeral + group name in tracked caps */}
+                <div
+                  id={`group-${group.id}`}
+                  className="text-center pt-4 pb-2 sm:pt-6 sm:pb-3 lg:pt-10 lg:pb-4 scroll-mt-24"
+                >
+                  <p
+                    className="font-serif italic text-brand-copper-light leading-none text-4xl sm:text-5xl lg:text-6xl mb-4 lg:mb-5"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    {ROMAN_NUMERALS[gi]}
+                  </p>
+                  <div className="flex items-center justify-center gap-4 sm:gap-5">
+                    <span
+                      aria-hidden
+                      className="h-px w-10 sm:w-14 lg:w-20 bg-brand-copper/50"
+                    />
+                    <span className="text-brand-text text-[10px] sm:text-xs tracking-[0.4em] sm:tracking-[0.5em] uppercase font-semibold whitespace-nowrap">
+                      {tg(`${group.id}.name`)}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="h-px w-10 sm:w-14 lg:w-20 bg-brand-copper/50"
+                    />
+                  </div>
+                </div>
+
+                {/* CATEGORY ROWS for this group */}
+                {group.categories.map((catId, ci) => {
+                  const globalIndex = startIndex + ci;
+                  const isImageLeft = globalIndex % 2 === 0;
+                  const hero = CATEGORY_HERO_IMAGE[catId];
+
+                  return (
+                    <article
+                      key={catId}
+                      id={`cat-${catId}`}
+                      className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center scroll-mt-24"
+                    >
+                      {/* IMAGE COLUMN */}
+                      <div
+                        className={`lg:col-span-7 ${isImageLeft ? "lg:order-1" : "lg:order-2"}`}
+                      >
+                        <div className="relative w-full aspect-[16/10] overflow-hidden bg-brand-card/40 ring-1 ring-brand-border/40">
+                          <Image
+                            src={hero.src}
+                            alt={hero.alt}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 60vw"
+                            priority={globalIndex < 2}
+                            className="object-cover"
+                          />
+                          {/* very subtle dark vignette to hold legibility against bright sky shots */}
+                          <div
+                            className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/25 via-transparent to-transparent"
+                            aria-hidden
+                          />
+                        </div>
+                      </div>
+
+                      {/* TEXT COLUMN */}
+                      <div
+                        className={`lg:col-span-5 ${isImageLeft ? "lg:order-2 lg:pl-2" : "lg:order-1 lg:pr-2"}`}
+                      >
+                        <h2
+                          className="font-serif font-light text-white tracking-tight leading-[1.05] text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] mb-5 lg:mb-7"
+                          style={{ fontFamily: "var(--font-serif)" }}
+                        >
+                          {tc(`${catId}.name`)}
+                        </h2>
+                        <p className="text-brand-muted text-sm sm:text-base lg:text-[1.05rem] leading-relaxed font-light max-w-[44ch]">
+                          {tc(`${catId}.lead`)}
+                        </p>
+                        <p
+                          className="mt-5 lg:mt-7 font-serif italic text-brand-copper-light text-base sm:text-lg lg:text-xl"
+                          style={{ fontFamily: "var(--font-serif)" }}
+                        >
+                          „{tc(`${catId}.tagline`)}"
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </Fragment>
+            );
+          })}
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }
